@@ -1,0 +1,691 @@
+/* ==========================================================================
+   Base & Typography Variables
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --primary: #111111;
+  --gold: #d4af37;
+  --gold-light: #e2c87c;
+  --light-bg: #fdfbf7;
+  --dark-accent: #1a1a1a;
+  --text-muted: #6c757d;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Montserrat', sans-serif;
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #333333;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.navbar {
+  background-color: rgba(17, 17, 17, 0.95);
+  padding: 1rem 2rem;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff !important;
+  letter-spacing: 3px;
+  line-height: 1.1;
+}
+
+.navbar-brand span {
+  color: var(--gold);
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.navbar-toggler {
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+}
+
+.nav-link {
+  color: #e0e0e0 !important;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--gold) !important;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
+              url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-subtitle {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .hero-section {
+    min-height: 85vh;
+  }
+}
+
+/* Buttons */
+.btn-gold {
+  background-color: var(--gold);
+  color: #ffffff;
+  border-radius: 0;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  border: 1px solid var(--gold);
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.btn-gold:hover {
+  background-color: transparent;
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.btn-outline-gold {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.btn-outline-gold:hover {
+  background-color: #ffffff;
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Section Titles
+   ========================================================================== */
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+  color: var(--primary);
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+.section-title p {
+  max-width: 600px;
+  margin: 1rem auto 0;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   About Section
+   ========================================================================== */
+.about-section {
+  padding: 100px 0;
+  background-color: var(--light-bg);
+}
+
+.about-img {
+  position: relative;
+}
+
+.about-img img {
+  width: 85%;
+  object-fit: cover;
+  box-shadow: 15px 15px 0px var(--gold);
+  transition: var(--transition);
+}
+
+.about-img img:hover {
+  box-shadow: 20px 20px 0px var(--gold);
+  transform: translate(-4px, -4px);
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+.about-section .text-muted {
+  line-height: 1.8;
+}
+
+.about-section .fw-bold {
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+}
+
+/* ==========================================================================
+   Services Section
+   ========================================================================== */
+.services-section {
+  padding: 100px 0;
+  background-color: #ffffff;
+}
+
+.service-card {
+  padding: 40px 25px;
+  border: 1px solid #eef0f2;
+  text-align: center;
+  transition: var(--transition);
+  background: #ffffff;
+  height: 100%;
+}
+
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+}
+
+.service-card i {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.service-card:hover i {
+  transform: scale(1.1);
+}
+
+.service-card h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   Portfolio / Lookbook Section (Isotope Grid)
+   ========================================================================== */
+.lookbook-section,
+.gallery-section {
+  padding: 100px 0;
+  background-color: var(--light-bg);
+}
+
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.portfolio-filters button {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: var(--dark-accent);
+  transition: var(--transition);
+  font-family: var(--font-body);
+  font-weight: 500;
+  position: relative;
+}
+
+.portfolio-filters button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.portfolio-filters button.active::after,
+.portfolio-filters button:hover::after {
+  width: 70%;
+}
+
+.portfolio-filters button.active,
+.portfolio-filters button:hover {
+  color: var(--gold);
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+  transition: var(--transition);
+}
+
+.portfolio-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.portfolio-wrap img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 17, 17, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.portfolio-overlay h4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.portfolio-overlay p {
+  color: var(--gold);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.portfolio-wrap:hover img {
+  transform: scale(1.08);
+}
+
+.portfolio-wrap:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Contact & Enquiry Section
+   ========================================================================== */
+.contact-section {
+  padding: 100px 0;
+  background-color: #ffffff;
+}
+
+.contact-section .form-control,
+.contact-section .form-select {
+  border-radius: 0;
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: var(--transition);
+  background-color: #fafafa;
+}
+
+.contact-section .form-control:focus,
+.contact-section .form-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+  background-color: #ffffff;
+}
+
+.contact-section textarea.form-control {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-section .btn-gold {
+  padding: 14px 40px;
+}
+
+/* Quick contact row inside enquiry */
+.contact-section .quick-contact a {
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+.contact-section .quick-contact a:hover {
+  opacity: 0.75;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 50px 0 30px;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  color: #cccccc;
+  font-size: 1.3rem;
+  margin: 0 0.5rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.social-links a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* ==========================================================================
+   Floating WhatsApp Button
+   ========================================================================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: #25D366;
+  color: #ffffff !important;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  z-index: 999;
+  transition: var(--transition);
+  text-decoration: none;
+  animation: pulse-whatsapp 2.5s infinite;
+}
+
+.whatsapp-float:hover {
+  background: #1ebe5b;
+  color: #ffffff;
+  transform: scale(1.1);
+  animation: none;
+}
+
+@keyframes pulse-whatsapp {
+  0% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7), 0 0 0 10px rgba(37, 211, 102, 0.1); }
+  100% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+}
+
+/* ==========================================================================
+   Back to Top Button
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  background: var(--gold);
+  color: var(--primary) !important;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--primary);
+  color: var(--gold) !important;
+  transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   Responsive Tweaks
+   ========================================================================== */
+@media (max-width: 991px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  .navbar-collapse {
+    background-color: rgba(17, 17, 17, 0.98);
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+  }
+  .about-img img {
+    width: 100%;
+  }
+  .about-section,
+  .services-section,
+  .gallery-section,
+  .contact-section {
+    padding: 60px 0;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .section-title h2 {
+    font-size: 2rem;
+  }
+  .portfolio-wrap img {
+    height: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .hero-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+  }
+  .btn-gold,
+  .btn-outline-gold {
+    padding: 10px 20px;
+    font-size: 0.7rem;
+  }
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+    bottom: 20px;
+    right: 20px;
+  }
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 85px;
+    right: 24px;
+    font-size: 0.95rem;
+  }
+  .portfolio-wrap img {
+    height: 300px;
+  }
+  .portfolio-overlay h4 {
+    font-size: 1.2rem;
+  }
+  .about-section h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* ==========================================================================
+   Utility & Animation Helpers
+   ========================================================================== */
+.tracking-widest {
+  letter-spacing: 3px;
+}
+
+.text-gold {
+  color: var(--gold) !important;
+}
+
+.bg-gold {
+  background-color: var(--gold) !important;
+}
+
+/* Smooth reveal on scroll (optional — works with IntersectionObserver if added) */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

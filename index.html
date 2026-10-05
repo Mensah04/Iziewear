@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IZIEWEAR | Fashion House</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons (v6) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Inline modern enhancements — keeping structure but polished -->
+  <style>
+    /* subtle modern overrides — stays true to original */
+    :root {
+      --gold: #c9a03d;
+      --gold-light: #e2c87c;
+      --dark: #121212;
+      --soft-bg: #f9f7f4;
+      --transition: all 0.25s ease;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background-color: #fff;
+      color: #1e1e1e;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4, .navbar-brand {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .navbar {
+      background-color: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 0.7rem 0;
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(201, 160, 61, 0.2);
+    }
+    /* ===== LOGO STYLES (Navbar) ===== */
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff !important;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0;
+    }
+    .navbar-brand .brand-logo {
+      height: 56px;
+      width: 56px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #0d0d0d;
+      padding: 3px;
+      border: 1px solid rgba(201, 160, 61, 0.4);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .navbar-brand:hover .brand-logo {
+      transform: scale(1.05);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(201, 160, 61, 0.35);
+    }
+    .navbar-brand .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+    .navbar-brand .brand-text .brand-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    .navbar-brand .brand-text .brand-tagline {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+    }
+    @media (max-width: 576px) {
+      .navbar-brand .brand-logo { height: 44px; width: 44px; }
+      .navbar-brand .brand-text .brand-name { font-size: 1.15rem; letter-spacing: 1.5px; }
+      .navbar-brand .brand-text .brand-tagline { font-size: 0.5rem; letter-spacing: 2px; }
+    }
+
+    .navbar-nav .nav-link {
+      color: rgba(255,255,255,0.85) !important;
+      font-weight: 500;
+      margin: 0 0.25rem;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--gold) !important;
+    }
+    .navbar-toggler {
+      border-color: rgba(201, 160, 61, 0.5);
+    }
+
+    /* Buttons */
+    .btn-gold {
+      background-color: var(--gold);
+      border: 1px solid var(--gold);
+      color: #0f0f0f;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      border-radius: 40px;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+    .btn-gold:hover {
+      background-color: #b58b2f;
+      border-color: #b58b2f;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn-outline-gold {
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: #0f0f0f;
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0b0b0b 0%, #1e1e1e 100%);
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path d="M20 20 L80 80 M80 20 L20 80" stroke="white" stroke-width="0.8"/></svg>');
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+
+    /* ===== Hero Slider ===== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  background: #0b0b0b; /* fallback */
+}
+
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 10%;   /* ← shift crop upward (shows head + torso) */
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.4s ease-in-out, transform 3.3s ease-out;
+  will-change: opacity, transform;
+}
+
+@media (max-width: 768px) {
+  .hero-slide {
+    background-position: center 25%;  /* mobile: even higher */
+  }
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.65)
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Slide indicator dots */
+.hero-dots {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 4;
+}
+
+.hero-dots .dot {
+  width: 40px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hero-dots .dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.hero-dots .dot.active {
+  background: var(--gold);
+  width: 60px;
+}
+
+@media (max-width: 768px) {
+  .hero-dots { bottom: 25px; }
+  .hero-dots .dot { width: 28px; }
+  .hero-dots .dot.active { width: 42px; }
+}
+   
+    /* Sections */
+    .section-title h2 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.75rem;
+    }
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: var(--gold);
+    }
+    .about-section, .services-section, .gallery-section, .contact-section {
+      padding: 5rem 0;
+    }
+    .about-section { background: #fff; }
+    .services-section { background: var(--soft-bg); }
+    .gallery-section { background: #fff; }
+    .contact-section { background: var(--soft-bg); }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      object-fit: cover;
+      max-height: 520px;
+    }
+
+    /* Service cards */
+    .service-card {
+      background: #fff;
+      padding: 2.5rem 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      height: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px rgba(201, 160, 61, 0.15);
+      border-color: var(--gold-light);
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .service-card h4 {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Gallery filters & grid */
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .portfolio-filters button {
+      background: transparent;
+      border: 1px solid #ddd;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #444;
+      transition: var(--transition);
+    }
+    .portfolio-filters button.active,
+    .portfolio-filters button:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #0f0f0f;
+    }
+    .portfolio-item {
+      margin-bottom: 30px;
+      transition: var(--transition);
+    }
+    .portfolio-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+    }
+    .portfolio-wrap img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-wrap:hover img {
+      transform: scale(1.06);
+    }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 70%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .portfolio-wrap:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    .portfolio-overlay h4 {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      font-size: 1.4rem;
+    }
+    .portfolio-overlay p {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      margin: 0;
+    }
+
+    /* Contact / Enquiry form */
+    #fittingForm .form-control,
+    #fittingForm .form-select {
+      background: #fff;
+      border: 1px solid #e0ddd8;
+      padding: 0.9rem 1.2rem;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    #fittingForm .form-control:focus,
+    #fittingForm .form-select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(201, 160, 61, 0.15);
+    }
+    #fittingForm textarea.form-control {
+      min-height: 120px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d0d0d;
+      color: #aaa;
+      padding: 2.5rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(201,160,61,0.2);
+    }
+    /* ===== Footer logo ===== */
+    .footer-logo {
+      height: 90px;
+      width: 90px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background: #0d0d0d;
+      padding: 5px;
+      border: 1px solid rgba(201,160,61,0.25);
+      transition: var(--transition);
+    }
+    .footer-logo:hover {
+      border-color: var(--gold);
+      transform: scale(1.04);
+    }
+    .footer-tagline {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .social-links a {
+      color: #ccc;
+      font-size: 1.4rem;
+      margin: 0 0.6rem;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    .social-links a:hover {
+      color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    /* floating whatsapp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25D366;
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      background: #1ebe5b;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    /* back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background: var(--gold);
+      color: #0f0f0f;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: #b58b2f;
+      color: #fff;
+    }
+
+    /* misc */
+    .tracking-widest {
+      letter-spacing: 3px;
+    }
+    .fw-bold { font-weight: 700; }
+
+    /* Quick contact row */
+    .quick-contact a {
+      transition: var(--transition);
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+    .quick-contact a:hover {
+      opacity: 0.75;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">
+        <!-- ===== LOGO HERE ===== -->
+        <img src="images/logo.png" alt="IZIEWEAR Logo" class="brand-logo">
+        <span class="brand-text">
+          <span class="brand-name">IZIEWEAR</span>
+          <span class="brand-tagline">Fashion House</span>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Book Fitting</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+ <section id="hero" class="hero-section">
+  <!-- ===== SLIDING IMAGE BACKGROUND ===== -->
+  <div class="hero-slider">
+    <div class="hero-slide active" style="background-image: url('images/img17.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/img4.jpeg');"></div>
+    <div class="hero-slide" style="background-image: url('images/img6.jpeg');"></div>
+    <div class="hero-slide" style="background-image: url('images/img9.jpeg');"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <!-- Slide indicators -->
+  <div class="hero-dots">
+    <span class="dot active" data-slide="0"></span>
+    <span class="dot" data-slide="1"></span>
+    <span class="dot" data-slide="2"></span>
+    <span class="dot" data-slide="3"></span>
+  </div>
+
+  <div class="container position-relative" style="z-index: 3;">
+    <p class="hero-subtitle">High Fashion & Bespoke Tailoring</p>
+    <h1 class="hero-title">Elegance Redefined</h1>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="#gallery" class="btn btn-gold">Explore gallery</a>
+      <a href="#contact" class="btn btn-outline-gold">Book Fitting</a>
+    </div>
+  </div>
+</section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container"> 
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="about-img">
+            <img src="images/img9.jpeg" alt="Iziewear Fashion Atelier">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <p class="text-uppercase text-muted tracking-widest mb-2" style="letter-spacing: 2px; font-weight: 500;">About Us</p>
+          <h2 class="mb-4" style="font-size: 2.5rem;">Crafting Timeless Couture Since 2018</h2>
+          <p class="text-muted mb-4" style="line-height: 1.8;">
+            At IZIEWEAR, fashion is an art form. We combine traditional tailoring techniques with cutting-edge modern aesthetics to create garments that celebrate individuality, luxury, and confidence.
+          </p>
+          <div class="row g-4 text-center">
+            <div class="col-4">
+              <h3 class="fw-bold mb-0" style="color: var(--gold);">15+</h3>
+              <small class="text-uppercase text-muted">Collections</small>
+            </div>
+            <div class="col-4">
+              <h3 class="fw-bold mb-0" style="color: var(--gold);">500+</h3>
+              <small class="text-uppercase text-muted">Custom Outfits</small>
+            </div>
+            <div class="col-4">
+              <h3 class="fw-bold mb-0" style="color: var(--gold);">100%</h3>
+              <small class="text-uppercase text-muted">Bespoke Silk</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="section-title text-center mb-5">
+        <h2>Our Services</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="service-card">
+            <i class="fa-solid fa-scissors"></i>
+            <h4>Custom Design</h4>
+            <p class="text-muted">One-of-a-kind garments designed specifically around your silhouette and personal style preferences.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-card">
+            <i class="fa-solid fa-gem"></i>
+            <h4>Bridal & Evening</h4>
+            <p class="text-muted">Exquisite wedding dresses, gala attire, and red-carpet gowns featuring hand-sewn embellishments.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-card">
+            <i class="fa-solid fa-user-check"></i>
+            <h4>Style Consultation</h4>
+            <p class="text-muted">Personalized wardrobe curation, color analysis, and styling advice for private and public events.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lookbook Section (Isotope Filterable Gallery) -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <div class="section-title text-center mb-4">
+        <h2>Outfit Collections</h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="portfolio-filters">
+        <button data-filter="*" class="active">All Styles</button>
+        <button data-filter=".evening">Evening Wear</button>
+        <button data-filter=".bridal">Bridal</button>
+        <button data-filter=".streetwear">Casual Wear</button>
+      </div>
+
+      <!-- Portfolio Grid -->
+       <!-- Item 1: Evening -->
+ <div class="row portfolio-container">
+        <div class="col-lg-4 col-md-6 portfolio-item evening">
+          <div class="portfolio-wrap">
+            <img src="images/img12.jpg" alt="Evening Gown">
+            <div class="portfolio-overlay">
+              <h4>Emerald Silk Gown</h4>
+              <p>Evening Collection</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item evening">
+          <div class="portfolio-wrap">
+            <img src="images/img6.jpeg" alt="Evening Gown">
+            <div class="portfolio-overlay">
+              <h4>Emerald Silk Gown</h4>
+              <p>Evening Collection</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item evening">
+          <div class="portfolio-wrap">
+            <img src="images/img15.jpg" alt="Evening Gown">
+            <div class="portfolio-overlay">
+              <h4>Emerald Silk Gown</h4>
+              <p>Evening Collection</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Bridal -->
+         <div class="row portfolio-container">
+        <div class="col-lg-4 col-md-6 portfolio-item bridal">
+          <div class="portfolio-wrap">
+            <img src="images/img2.jpeg" alt="Bridal Dress">
+            <div class="portfolio-overlay">
+              <h4>Royal Lace Bridal Gown</h4>
+              <p>Bridal Couture</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item bridal">
+          <div class="portfolio-wrap">
+            <img src="images/img3.jpeg" alt="Bridal Dress">
+            <div class="portfolio-overlay">
+              <h4>Royal Lace Bridal Gown</h4>
+              <p>Bridal Couture</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item bridal">
+          <div class="portfolio-wrap">
+            <img src="images/img10.jpg" alt="Bridal Dress">
+            <div class="portfolio-overlay">
+              <h4>Royal Lace Bridal Gown</h4>
+              <p>Bridal Couture</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item bridal">
+          <div class="portfolio-wrap">
+            <img src="images/img11.jpg" alt="Bridal Dress">
+            <div class="portfolio-overlay">
+              <h4>Royal Lace Bridal Gown</h4>
+              <p>Bridal Couture</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item bridal">
+          <div class="portfolio-wrap">
+            <img src="images/img13.jpg" alt="Bridal Dress">
+            <div class="portfolio-overlay">
+              <h4>Royal Lace Bridal Gown</h4>
+              <p>Bridal Couture</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item bridal">
+          <div class="portfolio-wrap">
+            <img src="images/img16.jpg" alt="bridal">
+            <div class="portfolio-overlay">
+              <h4>Satin Slip Bridal Dress</h4>
+              <p>Bridal Couture</p>
+            </div>
+          </div>
+        </div>
+
+       <!-- Item 1: streetwear -->
+
+        <div class="col-lg-4 col-md-6 portfolio-item streetwear">
+          <div class="portfolio-wrap">
+            <img src="images/img17.jpg" alt="Casual Wear">
+            <div class="portfolio-overlay">
+              <h4>Oversized Tailored Suit</h4>
+              <p>Casual Wear</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item streetwear">
+          <div class="portfolio-wrap">
+            <img src="images/img18.jpg" alt="Casual Wear">
+            <div class="portfolio-overlay">
+              <h4>Oversized Tailored Suit</h4>
+              <p>Casual Wear</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item streetwear">
+          <div class="portfolio-wrap">
+            <img src="images/img14.jpg" alt="Casual Wear">
+            <div class="portfolio-overlay">
+              <h4>Oversized Tailored Suit</h4>
+              <p>Casual Wear</p>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <!-- Contact & Booking Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-title text-center mb-5">
+        <h2>Book a Private Fitting</h2>
+        <p class="text-muted mt-3" style="max-width: 600px; margin: 0 auto;">Fill the form below — our atelier team will confirm your appointment within 24 hours.</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form id="fittingForm">
+  <div class="row g-3">
+    <div class="col-md-6">
+      <input type="text" id="custName" class="form-control" placeholder="Your Name" required>
+    </div>
+    <div class="col-md-6">
+      <input type="email" id="custEmail" class="form-control" placeholder="Your Email" required>
+    </div>
+    <div class="col-md-6">
+      <input type="date" id="custDate" class="form-control" required>
+    </div>
+    <div class="col-md-6">
+      <select id="custCategory" class="form-select form-control">
+        <option selected disabled>Select Category</option>
+        <option>Bridal Consultation</option>
+        <option>Bespoke Suit/Gown</option>
+        <option>Wardrobe Styling</option>
+        <option>Evening / Gala Wear</option>
+        <option>Casual Wear</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <textarea id="custMessage" class="form-control" rows="4" placeholder="Tell us about your event or garment requests..."></textarea>
+    </div>
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-gold px-5 py-3">Request Appointment</button>
+      <p class="text-muted small mt-3 mb-0"><i class="fa-regular fa-clock me-1"></i> We reply within 24h · Your data is confidential</p>
+    </div>
+  </div>
+</form>
+
+          <!-- quick contact icons within enquiry -->
+          <div class="quick-contact text-center mt-5 d-flex justify-content-center gap-4 flex-wrap">
+            <a href="https://wa.me/233261101887" target="_blank" style="color:#25D366; font-weight:500;">
+              <i class="fab fa-whatsapp me-2"></i>WhatsApp
+            </a>
+            <a href="https://www.tiktok.com/@iziewear" target="_blank" style="color:#000; font-weight:500;">
+              <i class="fab fa-tiktok me-2"></i>TikTok
+            </a>
+            <a href="https://facebook.com/iziewear" target="_blank" style="color:#1877F2; font-weight:500;">
+              <i class="fab fa-facebook me-2"></i>Facebook
+            </a>
+            <a href="#" style="color:#E1306C; font-weight:500;">
+              <i class="fab fa-instagram me-2"></i>Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <!-- ===== FOOTER LOGO ===== -->
+      <img src="images/logo.png" alt="IZIEWEAR Logo" class="footer-logo">
+      <p class="footer-tagline">Quite Luxury. Bold Heritage.</p>
+      <p class="mb-1 text-white-50">&copy; 2026 IZIEWEAR. All Rights Reserved. · Bespoke fashion house</p>
+      <div class="social-links mt-3">
+        <a href="https://wa.me/233261101887" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.tiktok.com/@iziewear" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://facebook.com/iziewear" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <a href="https://wa.me/233261101887?text=Hello%20IZIEWEAR%2C%20I%20would%20like%20to%20book%20a%20fitting" class="whatsapp-float" target="_blank" rel="noopener" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top" id="backToTop" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery (Required for Isotope integration) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Isotope JS -->
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+
+  <!-- Inline fallback & modern behaviour -->
+  <script>
+    (function() {
+      function initIsotope() {
+        if (typeof jQuery === 'undefined' || typeof jQuery.fn.isotope === 'undefined') {
+          document.querySelectorAll('.portfolio-filters button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              document.querySelectorAll('.portfolio-filters button').forEach(b => b.classList.remove('active'));
+              this.classList.add('active');
+              const filter = this.getAttribute('data-filter');
+              document.querySelectorAll('.portfolio-item').forEach(item => {
+                if (filter === '*' || item.classList.contains(filter.substring(1))) {
+                  item.style.display = 'block';
+                } else {
+                  item.style.display = 'none';
+                }
+              });
+            });
+          });
+          return;
+        }
+
+        var $grid = $('.portfolio-container').isotope({
+          itemSelector: '.portfolio-item',
+          layoutMode: 'fitRows',
+          percentPosition: true
+        });
+
+        $('.portfolio-filters').on('click', 'button', function() {
+          var filterValue = $(this).attr('data-filter');
+          $grid.isotope({ filter: filterValue });
+          $('.portfolio-filters button').removeClass('active');
+          $(this).addClass('active');
+        });
+      }
+
+      window.addEventListener('load', function() {
+        initIsotope();
+
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 400) {
+            backBtn.classList.add('show');
+          } else {
+            backBtn.classList.remove('show');
+          }
+        });
+        backBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', function() {
+          let current = '';
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+              current = section.getAttribute('id');
+            }
+          });
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+              link.classList.add('active');
+            }
+          });
+        });
+          
+      });
+    })();
+
+  // ===== Hero Slider =====
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dots .dot');
+    let current = 0;
+    let interval;
+    const SLIDE_DURATION = 3300; // 3.3 seconds per slide
+
+    function goToSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      current = index;
+    }
+
+    function nextSlide() {
+      const next = (current + 1) % slides.length;
+      goToSlide(next);
+    }
+
+    function startAutoPlay() {
+      clearInterval(interval);
+      interval = setInterval(nextSlide, SLIDE_DURATION);
+    }
+
+    // Dot click handlers
+    dots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-slide'), 10);
+        goToSlide(index);
+        startAutoPlay(); // reset timer
+      });
+    });
+
+    // Pause on hover (desktop)
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+      heroSection.addEventListener('mouseenter', () => clearInterval(interval));
+      heroSection.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Start
+    if (slides.length > 0) {
+      goToSlide(0);
+      startAutoPlay();
+    }
+  })();
+
+  (function () {
+    var WHATSAPP_NUMBER = '233261101887';
+    var BUSINESS_NAME   = 'IZIEWEAR';
+
+    var form = document.getElementById('fittingForm');
+    if (!form) return;
+
+    function showToast(message, type) {
+      type = type || 'success';
+      var existing = document.querySelector('.izie-toast');
+      if (existing) existing.remove();
+
+      var toast = document.createElement('div');
+      toast.className = 'izie-toast izie-toast--' + type;
+      toast.innerHTML = '<i class="fas ' +
+        (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle') +
+        '"></i><span>' + message + '</span>';
+      document.body.appendChild(toast);
+
+      requestAnimationFrame(function () {
+        toast.classList.add('show');
+      });
+      setTimeout(function () {
+        toast.classList.remove('show');
+        setTimeout(function () { toast.remove(); }, 400);
+      }, 4500);
+    }
+
+    function buildMessage(data) {
+      var lines = [
+        '*New Fitting Request - ' + BUSINESS_NAME + '*',
+        '',
+        'Name: ' + data.name,
+        'Email: ' + data.email,
+        'Preferred Date: ' + data.date,
+        'Category: ' + data.category,
+        'Message: ' + (data.message || '-'),
+        '',
+        'Sent from IZIEWEAR website'
+      ];
+      return lines.join('\n');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var data = {
+        name:     document.getElementById('custName').value.trim(),
+        email:    document.getElementById('custEmail').value.trim(),
+        date:     document.getElementById('custDate').value,
+        category: document.getElementById('custCategory').value,
+        message:  document.getElementById('custMessage').value.trim()
+      };
+
+      // Build URL without template literals — safest approach
+      var message = buildMessage(data);
+      var encoded = encodeURIComponent(message);
+      var waURL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encoded;
+
+      console.log('WhatsApp URL:', waURL); // ← check console to debug
+
+      var waWindow = window.open(waURL, '_blank');
+      if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
+        window.location.href = waURL;
+      }
+
+      showToast('Opening WhatsApp...', 'success');
+      form.reset();
+    });
+  })();
+
+  </script>
+</body>
+</html>

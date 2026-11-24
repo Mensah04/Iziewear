@@ -1,549 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IZIEWEAR | Fashion House</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IZIEWEAR | Fashion House</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- FontAwesome Icons (v6) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-  <!-- Inline modern enhancements — keeping structure but polished -->
-  <style>
-    /* subtle modern overrides — stays true to original */
-    :root {
-      --gold: #c9a03d;
-      --gold-light: #e2c87c;
-      --dark: #121212;
-      --soft-bg: #f9f7f4;
-      --transition: all 0.25s ease;
-    }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background-color: #fff;
-      color: #1e1e1e;
-      scroll-behavior: smooth;
-    }
-    h1, h2, h3, h4, .navbar-brand {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .navbar {
-      background-color: rgba(10, 10, 10, 0.92);
-      backdrop-filter: blur(10px);
-      padding: 0.7rem 0;
-      transition: var(--transition);
-      border-bottom: 1px solid rgba(201, 160, 61, 0.2);
-    }
-    /* ===== LOGO STYLES (Navbar) ===== */
-    .navbar-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #fff !important;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      padding: 0;
-    }
-    .navbar-brand .brand-logo {
-      height: 56px;
-      width: 56px;
-      object-fit: contain;
-      border-radius: 50%;
-      background: #0d0d0d;
-      padding: 3px;
-      border: 1px solid rgba(201, 160, 61, 0.4);
-      transition: var(--transition);
-      flex-shrink: 0;
-    }
-    .navbar-brand:hover .brand-logo {
-      transform: scale(1.05);
-      border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(201, 160, 61, 0.35);
-    }
-    .navbar-brand .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-    }
-    .navbar-brand .brand-text .brand-name {
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #fff;
-    }
-    .navbar-brand .brand-text .brand-tagline {
-      font-size: 0.6rem;
-      font-weight: 400;
-      letter-spacing: 2.5px;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
-    }
-    @media (max-width: 576px) {
-      .navbar-brand .brand-logo { height: 44px; width: 44px; }
-      .navbar-brand .brand-text .brand-name { font-size: 1.15rem; letter-spacing: 1.5px; }
-      .navbar-brand .brand-text .brand-tagline { font-size: 0.5rem; letter-spacing: 2px; }
-    }
+<style>
+/* ============================================================
+   IZIEWEAR — Modern Frontend
+   ============================================================ */
+:root {
+  --gold: #c9a03d;
+  --gold-light: #e2c87c;
+  --dark: #121212;
+  --soft-bg: #f9f7f4;
+  --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    .navbar-nav .nav-link {
-      color: rgba(255,255,255,0.85) !important;
-      font-weight: 500;
-      margin: 0 0.25rem;
-      font-size: 0.9rem;
-      transition: var(--transition);
-      position: relative;
-    }
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link.active {
-      color: var(--gold) !important;
-    }
-    .navbar-toggler {
-      border-color: rgba(201, 160, 61, 0.5);
-    }
+* { box-sizing: border-box; }
 
-    /* Buttons */
-    .btn-gold {
-      background-color: var(--gold);
-      border: 1px solid var(--gold);
-      color: #0f0f0f;
-      font-weight: 600;
-      padding: 0.7rem 2rem;
-      border-radius: 40px;
-      transition: var(--transition);
-      letter-spacing: 0.3px;
-    }
-    .btn-gold:hover {
-      background-color: #b58b2f;
-      border-color: #b58b2f;
-      color: #fff;
-      transform: translateY(-2px);
-    }
-    .btn-outline-gold {
-      border: 1.5px solid var(--gold);
-      color: var(--gold);
-      background: transparent;
-      font-weight: 600;
-      padding: 0.7rem 2rem;
-      border-radius: 40px;
-      transition: var(--transition);
-    }
-    .btn-outline-gold:hover {
-      background: var(--gold);
-      color: #0f0f0f;
-      border-color: var(--gold);
-      transform: translateY(-2px);
-    }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #fff;
+  color: #1e1e1e;
+  scroll-behavior: smooth;
+  padding-top: 32px;
+  overflow-x: hidden;
+}
 
-    /* Hero */
-    .hero-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(135deg, #0b0b0b 0%, #1e1e1e 100%);
-      color: #fff;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-section::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path d="M20 20 L80 80 M80 20 L20 80" stroke="white" stroke-width="0.8"/></svg>');
-      background-size: 80px 80px;
-      pointer-events: none;
-    }
+h1, h2, h3, h4, .navbar-brand, .display-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
 
-    /* ===== Hero Slider ===== */
-.hero-section {
-  min-height: 100vh;
+img { max-width: 100%; display: block; }
+
+/* ===== Announcement bar ===== */
+.announcement-bar {
+  height: 32px;
+  background: var(--gold);
+  color: #111;
   display: flex;
   align-items: center;
-  text-align: center;
-  color: #fff;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1031;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.75rem 0;
+  transition: var(--transition);
+  border-bottom: 1px solid rgba(201, 160, 61, 0.2);
+}
+.navbar.fixed-top { top: 32px; }
+
+.navbar-brand {
+  display: flex; align-items: center; gap: 12px;
+  color: #fff !important; padding: 0;
+}
+.brand-logo {
+  height: 52px; width: 52px; object-fit: contain;
+  border-radius: 50%; background: #0d0d0d; padding: 3px;
+  border: 1px solid rgba(201, 160, 61, 0.4);
+  transition: var(--transition);
+}
+.navbar-brand:hover .brand-logo {
+  transform: scale(1.05);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201, 160, 61, 0.35);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+.brand-name { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: #fff; }
+.brand-tagline {
+  font-size: 0.58rem; font-weight: 400; letter-spacing: 2.5px;
+  color: var(--gold); text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500;
+  margin: 0 0.3rem;
+  font-size: 0.9rem;
+  transition: var(--transition);
   position: relative;
-  overflow: hidden;
-  background: #0b0b0b; /* fallback */
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active { color: var(--gold) !important; }
+.navbar-toggler { border-color: rgba(201, 160, 61, 0.5); }
+
+.nav-actions { display: flex; align-items: center; gap: 4px; margin-left: 12px; }
+.nav-icon {
+  position: relative; border: 0; background: transparent;
+  color: #fff; width: 40px; height: 40px; border-radius: 50%;
+  display: inline-grid; place-items: center; transition: var(--transition);
+}
+.nav-icon:hover { color: var(--gold); background: rgba(201,160,61,.08); }
+.nav-count {
+  position: absolute; top: 2px; right: 1px;
+  min-width: 17px; height: 17px; border-radius: 20px;
+  background: var(--gold); color: #111;
+  font-size: 9px; line-height: 17px; font-weight: 700;
+  text-align: center; padding: 0 4px;
 }
 
-.hero-slider {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+@media (max-width: 576px) {
+  .brand-logo { height: 42px; width: 42px; }
+  .brand-name { font-size: 1.1rem; letter-spacing: 1.5px; }
+  .brand-tagline { font-size: 0.5rem; letter-spacing: 2px; }
 }
 
+/* ===== Buttons ===== */
+.btn-gold {
+  background: var(--gold); border: 1px solid var(--gold); color: #0f0f0f;
+  font-weight: 600; padding: 0.7rem 2rem; border-radius: 40px;
+  transition: var(--transition); letter-spacing: 0.3px;
+}
+.btn-gold:hover {
+  background: #b58b2f; border-color: #b58b2f; color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(201, 160, 61, 0.25);
+}
+.btn-outline-gold {
+  border: 1.5px solid var(--gold); color: var(--gold);
+  background: transparent; font-weight: 600;
+  padding: 0.7rem 2rem; border-radius: 40px;
+  transition: var(--transition);
+}
+.btn-outline-gold:hover {
+  background: var(--gold); color: #0f0f0f; border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ===== Hero ===== */
+.hero-section {
+  min-height: 100vh;
+  display: flex; align-items: center; text-align: center;
+  color: #fff; position: relative; overflow: hidden;
+  background: #0b0b0b;
+}
+.hero-slider { position: absolute; inset: 0; z-index: 0; }
 .hero-slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 10%;   /* ← shift crop upward (shows head + torso) */
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 15%;
   background-repeat: no-repeat;
-  opacity: 0;
-  transform: scale(1.08);
-  transition: opacity 1.4s ease-in-out, transform 3.3s ease-out;
+  opacity: 0; transform: scale(1.08);
+  transition: opacity 1.4s ease-in-out, transform 4s ease-out;
   will-change: opacity, transform;
+}
+.hero-slide.active { opacity: 1; transform: scale(1); z-index: 1; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.75) 100%);
+  z-index: 2; pointer-events: none;
+}
+.hero-section .container { position: relative; z-index: 3; }
+.hero-subtitle {
+  font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.05;
 }
 
 @media (max-width: 768px) {
-  .hero-slide {
-    background-position: center 25%;  /* mobile: even higher */
-  }
+  .hero-slide { background-position: center 25%; }
+  .hero-section { min-height: 92vh; }
 }
 
-.hero-slide.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0.65)
-  );
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* Slide indicator dots */
+/* Hero dots */
 .hero-dots {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
+  position: absolute; bottom: 40px; left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 4;
+  display: flex; gap: 12px; z-index: 4;
 }
-
 .hero-dots .dot {
-  width: 40px;
-  height: 3px;
+  width: 40px; height: 3px;
   background: rgba(255, 255, 255, 0.35);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 2px;
+  cursor: pointer; transition: all 0.3s ease;
+  border-radius: 2px; border: 0;
 }
-
-.hero-dots .dot:hover {
-  background: rgba(255, 255, 255, 0.6);
-}
-
-.hero-dots .dot.active {
-  background: var(--gold);
-  width: 60px;
-}
-
+.hero-dots .dot:hover { background: rgba(255, 255, 255, 0.6); }
+.hero-dots .dot.active { background: var(--gold); width: 60px; }
 @media (max-width: 768px) {
   .hero-dots { bottom: 25px; }
   .hero-dots .dot { width: 28px; }
   .hero-dots .dot.active { width: 42px; }
 }
-   
-    /* Sections */
-    .section-title h2 {
-      font-size: 2.6rem;
-      font-weight: 600;
-      position: relative;
-      display: inline-block;
-      padding-bottom: 0.75rem;
-    }
-    .section-title h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70px;
-      height: 3px;
-      background: var(--gold);
-    }
-    .about-section, .services-section, .gallery-section, .contact-section {
-      padding: 5rem 0;
-    }
-    .about-section { background: #fff; }
-    .services-section { background: var(--soft-bg); }
-    .gallery-section { background: #fff; }
-    .contact-section { background: var(--soft-bg); }
 
-    .about-img img {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      object-fit: cover;
-      max-height: 520px;
-    }
+/* ===== Section base ===== */
+section { scroll-margin-top: 100px; }
+.section-title h2 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.75rem;
+}
+.section-title h2::after {
+  content: '';
+  position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 70px; height: 3px;
+  background: var(--gold);
+}
+.about-section, .services-section, .gallery-section, .contact-section {
+  padding: 6rem 0;
+}
+.about-section { background: #fff; }
+.services-section { background: var(--soft-bg); }
+.gallery-section { background: #fff; }
+.contact-section { background: var(--soft-bg); }
 
-    /* Service cards */
-    .service-card {
-      background: #fff;
-      padding: 2.5rem 1.5rem;
-      border-radius: 20px;
-      text-align: center;
-      height: 100%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.02);
-      transition: var(--transition);
-      border: 1px solid rgba(0,0,0,0.03);
-    }
-    .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 35px rgba(201, 160, 61, 0.15);
-      border-color: var(--gold-light);
-    }
-    .service-card i {
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
-    .service-card h4 {
-      font-weight: 600;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
+/* ===== About ===== */
+.about-img img {
+  width: 100%; border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  object-fit: cover; max-height: 520px;
+}
 
-    /* Gallery filters & grid */
-    .portfolio-filters {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .portfolio-filters button {
-      background: transparent;
-      border: 1px solid #ddd;
-      padding: 0.5rem 1.5rem;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #444;
-      transition: var(--transition);
-    }
-    .portfolio-filters button.active,
-    .portfolio-filters button:hover {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #0f0f0f;
-    }
-    .portfolio-item {
-      margin-bottom: 30px;
-      transition: var(--transition);
-    }
-    .portfolio-wrap {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.06);
-    }
-    .portfolio-wrap img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    .portfolio-wrap:hover img {
-      transform: scale(1.06);
-    }
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 70%);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.8rem;
-      opacity: 0;
-      transition: var(--transition);
-    }
-    .portfolio-wrap:hover .portfolio-overlay {
-      opacity: 1;
-    }
-    .portfolio-overlay h4 {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-      font-size: 1.4rem;
-    }
-    .portfolio-overlay p {
-      font-size: 0.85rem;
-      color: var(--gold-light);
-      margin: 0;
-    }
+/* ===== Services ===== */
+.service-card {
+  background: #fff; padding: 2.5rem 1.5rem;
+  border-radius: 20px; text-align: center; height: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+  transition: var(--transition);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px rgba(201, 160, 61, 0.15);
+  border-color: var(--gold-light);
+}
+.service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem; }
+.service-card h4 { font-size: 1.4rem; margin-bottom: 0.9rem; }
 
-    /* Contact / Enquiry form */
-    #fittingForm .form-control,
-    #fittingForm .form-select {
-      background: #fff;
-      border: 1px solid #e0ddd8;
-      padding: 0.9rem 1.2rem;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      transition: var(--transition);
-    }
-    #fittingForm .form-control:focus,
-    #fittingForm .form-select:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 4px rgba(201, 160, 61, 0.15);
-    }
-    #fittingForm textarea.form-control {
-      min-height: 120px;
-    }
+/* ===== Gallery ===== */
+.portfolio-filters {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 0.75rem; margin-bottom: 2.5rem;
+}
+.portfolio-filters button {
+  background: transparent; border: 1px solid #ddd;
+  padding: 0.5rem 1.5rem; border-radius: 40px;
+  font-size: 0.9rem; font-weight: 500; color: #444;
+  transition: var(--transition);
+}
+.portfolio-filters button.active,
+.portfolio-filters button:hover {
+  background: var(--gold); border-color: var(--gold); color: #0f0f0f;
+}
+.portfolio-item { margin-bottom: 30px; }
+.portfolio-wrap {
+  position: relative; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+  cursor: zoom-in; transition: var(--transition);
+}
+.portfolio-wrap img {
+  width: 100%; height: 380px; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.portfolio-wrap:hover img { transform: scale(1.06); }
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 65%);
+  color: #fff;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 1.8rem;
+  opacity: 0; transition: var(--transition);
+}
+.portfolio-wrap:hover .portfolio-overlay,
+.portfolio-wrap:focus-visible .portfolio-overlay { opacity: 1; }
+.portfolio-overlay h4 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+.portfolio-overlay p {
+  font-size: 0.85rem; color: var(--gold-light); margin: 0;
+}
+.portfolio-overlay .quick-view-label {
+  margin-top: 0.8rem; font-size: 0.75rem;
+  color: var(--gold); letter-spacing: 2px;
+  text-transform: uppercase; font-weight: 600;
+}
 
-    /* Footer */
-    footer {
-      background: #0d0d0d;
-      color: #aaa;
-      padding: 2.5rem 0;
-      text-align: center;
-      border-top: 1px solid rgba(201,160,61,0.2);
-    }
-    /* ===== Footer logo ===== */
-    .footer-logo {
-      height: 90px;
-      width: 90px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-      border-radius: 50%;
-      background: #0d0d0d;
-      padding: 5px;
-      border: 1px solid rgba(201,160,61,0.25);
-      transition: var(--transition);
-    }
-    .footer-logo:hover {
-      border-color: var(--gold);
-      transform: scale(1.04);
-    }
-    .footer-tagline {
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-    }
-    .social-links a {
-      color: #ccc;
-      font-size: 1.4rem;
-      margin: 0 0.6rem;
-      transition: var(--transition);
-      display: inline-block;
-    }
-    .social-links a:hover {
-      color: var(--gold);
-      transform: translateY(-4px);
-    }
+/* ===== Lightbox ===== */
+.lightbox {
+  position: fixed; inset: 32px 0 0;
+  background: rgba(8, 8, 8, 0.96);
+  z-index: 1092;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.6fr);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox-image {
+  display: flex; align-items: center; justify-content: center;
+  padding: 25px; overflow: hidden;
+}
+.lightbox-image img {
+  max-width: 100%; max-height: 82vh; object-fit: contain;
+  border-radius: 8px;
+}
+.lightbox-details {
+  background: #fff; padding: 55px 40px;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+.lightbox-close {
+  position: absolute; right: 22px; top: 20px; z-index: 2;
+  border: 0; background: #fff; color: #111;
+  width: 42px; height: 42px; border-radius: 50%;
+  cursor: pointer; transition: var(--transition);
+}
+.lightbox-close:hover { background: var(--gold); }
+.lightbox-details h2 {
+  font-size: 1.8rem; margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', serif;
+}
+.lightbox-price {
+  color: var(--gold); font-size: 1.4rem;
+  font-weight: 700; margin-bottom: 1rem;
+}
+.lightbox-details p { color: #555; line-height: 1.7; }
+@media (max-width: 991px) {
+  .lightbox { grid-template-columns: 1fr; overflow-y: auto; }
+  .lightbox-image { min-height: 50vh; }
+  .lightbox-details { padding: 30px 24px; }
+}
 
-    /* floating whatsapp */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: #25D366;
-      color: #fff;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-      z-index: 999;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    .whatsapp-float:hover {
-      background: #1ebe5b;
-      color: #fff;
-      transform: scale(1.08);
-    }
+/* ===== Testimonials carousel ===== */
+.testimonials-section { background: #111; color: #fff; padding: 100px 0; }
+.testimonials-section .section-title h2 { color: #fff; }
+.testimonials-section .section-title p { color: #aaa; }
+.testimonial-carousel {
+  position: relative;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 50px;
+}
+.testimonial-viewport { overflow: hidden; }
+.testimonial-track {
+  display: flex;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.testimonial-slide {
+  flex: 0 0 100%;
+  padding: 0 12px;
+}
+.testimonial-card {
+  border: 1px solid rgba(201, 160, 61, 0.25);
+  background: rgba(255, 255, 255, 0.035);
+  padding: 40px 34px;
+  border-radius: 16px;
+  text-align: center;
+}
+.testimonial-avatar {
+  width: 78px; height: 78px; border-radius: 50%;
+  object-fit: cover; margin: 0 auto 1.4rem;
+  border: 2px solid var(--gold);
+}
+.testimonial-stars {
+  color: var(--gold); letter-spacing: 4px; margin-bottom: 1.2rem;
+  font-size: 0.9rem;
+}
+.testimonial-card blockquote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem; line-height: 1.8;
+  color: #eee; margin-bottom: 1.4rem;
+}
+.testimonial-author {
+  color: var(--gold); font-size: 0.78rem;
+  letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+}
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--gold); background: transparent;
+  color: var(--gold); cursor: pointer;
+  display: grid; place-items: center;
+  transition: var(--transition); z-index: 2;
+}
+.carousel-btn:hover { background: var(--gold); color: #111; }
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+.carousel-dots {
+  display: flex; justify-content: center; gap: 10px;
+  margin-top: 2rem;
+}
+.carousel-dots .dot {
+  width: 30px; height: 3px; background: rgba(255,255,255,0.3);
+  border: 0; cursor: pointer; border-radius: 2px;
+  transition: var(--transition);
+}
+.carousel-dots .dot.active { background: var(--gold); width: 45px; }
 
-    /* back to top */
-    .back-to-top {
-      position: fixed;
-      bottom: 100px;
-      right: 30px;
-      background: var(--gold);
-      color: #0f0f0f;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      z-index: 998;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    .back-to-top.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    .back-to-top:hover {
-      background: #b58b2f;
-      color: #fff;
-    }
+/* ===== Shop the Look ===== */
+.shop-section { background: #f8f5ef; padding: 100px 0; }
+.shop-card {
+  background: #fff; border-radius: 20px;
+  overflow: hidden; margin-bottom: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  transition: var(--transition);
+}
+.shop-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.shop-image { position: relative; overflow: hidden; }
+.shop-image img {
+  width: 100%; height: 430px; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.shop-card:hover .shop-image img { transform: scale(1.05); }
+.wishlist-btn {
+  position: absolute; top: 14px; right: 14px;
+  width: 42px; height: 42px; border: 0; border-radius: 50%;
+  background: rgba(255,255,255,0.92); color: #111;
+  cursor: pointer; transition: var(--transition); z-index: 2;
+  display: grid; place-items: center;
+}
+.wishlist-btn:hover { background: #fff; transform: scale(1.08); }
+.wishlist-btn.active { background: var(--gold); color: #fff; }
+.shop-info { padding: 22px; }
+.shop-info h4 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+.shop-price { color: var(--gold); font-weight: 700; font-size: 1.05rem; margin-bottom: 0.8rem; }
+.option-label {
+  font-size: 0.72rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #888;
+  margin-bottom: 6px; font-weight: 600;
+}
+.size-options, .color-options {
+  display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.size-options button {
+  width: 40px; height: 40px; border: 1px solid #ddd;
+  background: #fff; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; border-radius: 8px;
+  transition: var(--transition);
+}
+.size-options button:hover { border-color: var(--gold); }
+.size-options button.active {
+  background: #111; color: #fff; border-color: #111;
+}
+.color-options button {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid #fff; cursor: pointer;
+  box-shadow: 0 0 0 1px #ddd; transition: var(--transition);
+}
+.color-options button.active { box-shadow: 0 0 0 2px var(--gold); }
+.add-to-cart {
+  background: var(--gold); color: #0f0f0f; border: 0;
+  padding: 12px; border-radius: 40px;
+  font-weight: 600; width: 100%; cursor: pointer;
+  transition: var(--transition); letter-spacing: 0.5px;
+}
+.add-to-cart:hover { background: #b58b2f; color: #fff; }
 
-    /* misc */
-    .tracking-widest {
-      letter-spacing: 3px;
-    }
-    .fw-bold { font-weight: 700; }
+/* ===== Style quiz ===== */
+.style-quiz-section {
+  padding: 90px 0;
+  background: linear-gradient(135deg, #111 0%, #29251d 100%);
+  color: #fff; text-align: center;
+}
+.style-quiz-section .hero-subtitle { color: var(--gold); }
+.quiz-step { display: none; }
+.quiz-step.active { display: block; animation: fadeInUp 0.4s ease; }
+.quiz-options {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin: 30px auto 20px;
+  max-width: 720px;
+}
+.quiz-option {
+  border: 1px solid rgba(201, 160, 61, 0.4);
+  background: transparent; color: #fff;
+  padding: 22px 16px; border-radius: 12px;
+  cursor: pointer; transition: var(--transition);
+  font-weight: 500;
+}
+.quiz-option:hover { background: rgba(201,160,61,0.12); }
+.quiz-option.active { background: var(--gold); color: #111; border-color: var(--gold); }
+.quiz-result {
+  background: rgba(201, 160, 61, 0.1);
+  border: 1px solid var(--gold);
+  padding: 30px; border-radius: 16px;
+  max-width: 560px; margin: 20px auto 0;
+}
+@media (max-width: 576px) {
+  .quiz-options { grid-template-columns: 1fr 1fr; }
+}
 
-    /* Quick contact row */
-    .quick-contact a {
-      transition: var(--transition);
-      font-size: 0.95rem;
-      text-decoration: none;
-    }
-    .quick-contact a:hover {
-      opacity: 0.75;
-      transform: translateY(-2px);
-    }
-  </style>
+/* ===== Before/after ===== */
+.before-after-section { padding: 100px 0; background: #fff; }
+.comparison-card {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+.comparison-card .comparison-side { position: relative; overflow: hidden; }
+.comparison-card img { width: 100%; height: 500px; object-fit: cover; }
+.comparison-card .label {
+  position: absolute; bottom: 20px; left: 20px;
+  background: #111; color: #fff;
+  padding: 8px 16px; font-size: 0.7rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  border-radius: 30px;
+}
+@media (max-width: 768px) {
+  .comparison-card { grid-template-columns: 1fr; }
+  .comparison-card img { height: 340px; }
+}
+
+/* ===== Editorial lookbook ===== */
+.lookbook-editorial { background: #f8f5ef; padding: 100px 0; }
+.story-card {
+  position: relative; overflow: hidden;
+  border-radius: 20px; cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 24px;
+}
+.story-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.story-image img { width: 100%; height: 480px; object-fit: cover; transition: transform 0.7s ease; }
+.story-card:hover .story-image img { transform: scale(1.05); }
+.story-overlay {
+  position: absolute; inset: auto 0 0;
+  padding: 36px 28px; color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,0.88));
+}
+.story-overlay p {
+  font-size: 0.72rem; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+}
+.story-overlay h3 { font-size: 1.9rem; margin: 0; }
+
+/* ===== Social feed ===== */
+.social-section { background: #fff; padding: 100px 0; }
+.social-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.social-grid a {
+  display: block; position: relative; overflow: hidden;
+  aspect-ratio: 1; border-radius: 8px;
+}
+.social-grid img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.social-grid a:hover img { transform: scale(1.08); }
+.social-grid a::after {
+  content: '\f16d'; font-family: 'Font Awesome 6 Brands';
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,0.55); color: #fff;
+  font-size: 1.8rem; opacity: 0;
+  transition: var(--transition);
+}
+.social-grid a:hover::after { opacity: 1; }
+@media (max-width: 991px) {
+  .social-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 576px) {
+  .social-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ===== Booking form ===== */
+#fittingForm .form-control,
+#fittingForm .form-select {
+  background: #fff; border: 1px solid #e0ddd8;
+  padding: 0.9rem 1.2rem; border-radius: 14px;
+  font-size: 0.95rem; transition: var(--transition);
+}
+#fittingForm .form-control:focus,
+#fittingForm .form-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201, 160, 61, 0.15);
+  outline: none;
+}
+#fittingForm textarea.form-control { min-height: 120px; }
+
+.slot-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-top: 8px;
+}
+.slot-button {
+  border: 1px solid #ddd; background: #fff;
+  padding: 10px 5px; border-radius: 10px;
+  cursor: pointer; font-size: 0.85rem;
+  font-weight: 500; transition: var(--transition);
+}
+.slot-button:hover { border-color: var(--gold); }
+.slot-button.active {
+  background: #111; color: #fff; border-color: #111;
+}
+
+/* Success screen */
+.success-screen {
+  background: #fff; padding: 3rem 2.5rem;
+  border-radius: 24px; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  border: 1px solid rgba(201, 160, 61, 0.15);
+  animation: fadeInUp 0.5s ease;
+}
+.success-icon {
+  width: 88px; height: 88px; margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c9a03d 0%, #e2c87c 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 2.4rem;
+  box-shadow: 0 12px 30px rgba(201, 160, 61, 0.35);
+  animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.success-screen h3 { font-size: 1.9rem; margin-bottom: 0.6rem; }
+.success-lead { font-size: 1.05rem; color: #444; margin-bottom: 0.8rem; }
+.success-note { color: #777; font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+.success-details {
+  background: #f9f7f4; border-radius: 16px;
+  padding: 1.4rem 1.6rem;
+  margin: 0 auto 2rem; max-width: 420px; text-align: left;
+}
+.success-detail-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 0.6rem 0;
+  border-bottom: 1px solid #ede8df; font-size: 0.92rem;
+}
+.success-detail-row:last-child { border-bottom: none; }
+.success-detail-row span { color: #888; }
+.success-detail-row strong { color: #121212; }
+.success-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.success-footnote { font-size: 0.8rem; color: #aaa; margin: 0; }
+
+/* ===== Toast ===== */
+.izie-toast {
+  position: fixed; bottom: 30px; left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background: #121212; color: #fff;
+  padding: 14px 24px; border-radius: 40px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.9rem; font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 10000;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 90vw;
+}
+.izie-toast.show { transform: translateX(-50%) translateY(0); }
+.izie-toast--success i { color: #25D366; }
+.izie-toast--error i { color: #ff5c5c; }
+
+/* ===== Search overlay ===== */
+.search-overlay {
+  position: fixed; inset: 32px 0 0;
+  background: rgba(12,12,12,0.97);
+  z-index: 1089; opacity: 0; visibility: hidden;
+  transition: 0.3s ease;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 18vh;
+}
+.search-overlay.open { opacity: 1; visibility: visible; }
+.search-box { width: min(760px, 86vw); position: relative; }
+.search-box input {
+  width: 100%; border: 0;
+  border-bottom: 1px solid var(--gold);
+  background: transparent; color: #fff;
+  font-size: 2rem; padding: 12px 60px 12px 0;
+  outline: none;
+}
+.search-close {
+  position: absolute; right: 0; top: 12px;
+  border: 0; background: transparent; color: #fff;
+  font-size: 1.4rem; cursor: pointer;
+}
+.search-results { color: #aaa; padding-top: 18px; }
+.search-results a {
+  display: block; padding: 10px 0;
+  color: #fff; text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: var(--transition);
+}
+.search-results a:hover { color: var(--gold); padding-left: 8px; }
+@media (max-width: 576px) {
+  .search-box input { font-size: 1.4rem; }
+}
+
+/* ===== Drawer (wishlist/cart) ===== */
+.drawer-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.62);
+  z-index: 1090; opacity: 0; visibility: hidden;
+  transition: 0.3s ease;
+}
+.drawer-backdrop.show { opacity: 1; visibility: visible; }
+.side-drawer {
+  position: fixed; top: 0; right: 0; height: 100%;
+  width: min(420px, 92vw); background: #fff;
+  z-index: 1091; transform: translateX(100%);
+  transition: transform 0.35s ease;
+  padding: 28px; overflow-y: auto;
+}
+.side-drawer.open { transform: translateX(0); }
+.drawer-header {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid #eee; padding-bottom: 18px;
+}
+.drawer-item {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 12px; align-items: center;
+  padding: 15px 0; border-bottom: 1px solid #eee;
+}
+.drawer-item img {
+  width: 72px; height: 82px;
+  object-fit: cover; border-radius: 8px;
+}
+
+/* ===== Reveal animations ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #0d0d0d; color: #aaa;
+  padding: 3rem 0; text-align: center;
+  border-top: 1px solid rgba(201,160,61,0.2);
+}
+.footer-logo {
+  height: 90px; width: 90px; object-fit: contain;
+  margin-bottom: 1rem; border-radius: 50%;
+  background: #0d0d0d; padding: 5px;
+  border: 1px solid rgba(201,160,61,0.25);
+  transition: var(--transition);
+  display: block;        
+  margin-left: auto;    
+  margin-right: auto;
+}
+.footer-logo:hover { border-color: var(--gold); transform: scale(1.04); }
+.footer-tagline {
+  font-size: 0.7rem; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+}
+.social-links a {
+  color: #ccc; font-size: 1.3rem;
+  margin: 0 0.6rem; transition: var(--transition);
+  display: inline-block;
+}
+.social-links a:hover { color: var(--gold); transform: translateY(-4px); }
+
+/* ===== Floating buttons ===== */
+.whatsapp-float, .back-to-top {
+  position: fixed; right: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; z-index: 999; transition: var(--transition);
+}
+.whatsapp-float {
+  bottom: 28px; background: #25D366; color: #fff;
+  width: 60px; height: 60px; font-size: 2rem;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+.whatsapp-float:hover { background: #1ebe5b; color: #fff; transform: scale(1.08); }
+.back-to-top {
+  bottom: 100px; background: var(--gold); color: #0f0f0f;
+  width: 48px; height: 48px; font-size: 1.2rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  opacity: 0; visibility: hidden;
+}
+.back-to-top.show { opacity: 1; visibility: visible; }
+.back-to-top:hover { background: #b58b2f; color: #fff; }
+
+/* Utilities */
+.tracking-widest { letter-spacing: 3px; }
+.quick-contact a {
+  transition: var(--transition); text-decoration: none;
+}
+.quick-contact a:hover { opacity: 0.75; transform: translateY(-2px); }
+
+@media (max-width: 991px) {
+  .nav-actions { margin-left: auto; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#hero">
-        <!-- ===== LOGO HERE ===== -->
-        <img src="images/logo.png" alt="IZIEWEAR Logo" class="brand-logo">
-        <span class="brand-text">
-          <span class="brand-name">IZIEWEAR</span>
-          <span class="brand-tagline">Fashion House</span>
-        </span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Book Fitting</a></li>
-        </ul>
+<!-- ===== Announcement bar ===== -->
+<div class="announcement-bar">Private fittings now available · Complimentary style consultation</div>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#hero">
+      <img src="images/logo.png" alt="IZIEWEAR Logo" class="brand-logo">
+      <span class="brand-text">
+        <span class="brand-name">IZIEWEAR</span>
+        <span class="brand-tagline">Fashion House</span>
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="#lookbook">Lookbook</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Book Fitting</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-icon" id="openSearch" type="button" title="Search" aria-label="Search"><i class="fas fa-search"></i></button>
+        <button class="nav-icon" id="openWishlist" type="button" title="Wishlist" aria-label="Wishlist"><i class="far fa-heart"></i><span class="nav-count" id="wishlistCount">0</span></button>
+        <button class="nav-icon" id="openCart" type="button" title="Shopping Bag" aria-label="Cart"><i class="fas fa-bag-shopping"></i><span class="nav-count" id="cartCount">0</span></button>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero Section -->
- <section id="hero" class="hero-section">
-  <!-- ===== SLIDING IMAGE BACKGROUND ===== -->
+<!-- ===== Hero ===== -->
+<section id="hero" class="hero-section">
   <div class="hero-slider">
     <div class="hero-slide active" style="background-image: url('images/img17.jpg');"></div>
     <div class="hero-slide" style="background-image: url('images/img4.jpeg');"></div>
@@ -551,529 +855,1148 @@
     <div class="hero-slide" style="background-image: url('images/img9.jpeg');"></div>
   </div>
   <div class="hero-overlay"></div>
-
-  <!-- Slide indicators -->
   <div class="hero-dots">
-    <span class="dot active" data-slide="0"></span>
-    <span class="dot" data-slide="1"></span>
-    <span class="dot" data-slide="2"></span>
-    <span class="dot" data-slide="3"></span>
+    <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+    <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+    <button class="dot" data-slide="3" aria-label="Slide 4"></button>
   </div>
-
-  <div class="container position-relative" style="z-index: 3;">
+  <div class="container">
     <p class="hero-subtitle">High Fashion & Bespoke Tailoring</p>
     <h1 class="hero-title">Elegance Redefined</h1>
     <div class="d-flex justify-content-center gap-3 flex-wrap">
-      <a href="#gallery" class="btn btn-gold">Explore gallery</a>
+      <a href="#gallery" class="btn btn-gold">Explore Gallery</a>
       <a href="#contact" class="btn btn-outline-gold">Book Fitting</a>
     </div>
   </div>
 </section>
 
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="container"> 
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <div class="about-img">
-            <img src="images/img9.jpeg" alt="Iziewear Fashion Atelier">
-          </div>
+<!-- ===== About ===== -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="about-img">
+          <img src="images/img9.jpeg" alt="Iziewear Fashion Atelier">
         </div>
-        <div class="col-lg-6">
-          <p class="text-uppercase text-muted tracking-widest mb-2" style="letter-spacing: 2px; font-weight: 500;">About Us</p>
-          <h2 class="mb-4" style="font-size: 2.5rem;">Crafting Timeless Couture Since 2018</h2>
-          <p class="text-muted mb-4" style="line-height: 1.8;">
-            At IZIEWEAR, fashion is an art form. We combine traditional tailoring techniques with cutting-edge modern aesthetics to create garments that celebrate individuality, luxury, and confidence.
-          </p>
-          <div class="row g-4 text-center">
-            <div class="col-4">
-              <h3 class="fw-bold mb-0" style="color: var(--gold);">15+</h3>
-              <small class="text-uppercase text-muted">Collections</small>
-            </div>
-            <div class="col-4">
-              <h3 class="fw-bold mb-0" style="color: var(--gold);">500+</h3>
-              <small class="text-uppercase text-muted">Custom Outfits</small>
-            </div>
-            <div class="col-4">
-              <h3 class="fw-bold mb-0" style="color: var(--gold);">100%</h3>
-              <small class="text-uppercase text-muted">Bespoke Silk</small>
-            </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <p class="text-uppercase text-muted tracking-widest mb-2" style="letter-spacing: 2px; font-weight: 500;">About Us</p>
+        <h2 class="mb-4" style="font-size: 2.5rem;">Crafting Timeless Couture Since 2018</h2>
+        <p class="text-muted mb-4" style="line-height: 1.8;">
+          At IZIEWEAR, fashion is an art form. We combine traditional tailoring techniques with cutting-edge modern aesthetics to create garments that celebrate individuality, luxury, and confidence.
+        </p>
+        <div class="row g-4 text-center">
+          <div class="col-4">
+            <h3 class="fw-bold mb-0" style="color: var(--gold);">15+</h3>
+            <small class="text-uppercase text-muted">Collections</small>
+          </div>
+          <div class="col-4">
+            <h3 class="fw-bold mb-0" style="color: var(--gold);">500+</h3>
+            <small class="text-uppercase text-muted">Custom Outfits</small>
+          </div>
+          <div class="col-4">
+            <h3 class="fw-bold mb-0" style="color: var(--gold);">100%</h3>
+            <small class="text-uppercase text-muted">Bespoke Silk</small>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="services-section">
-    <div class="container">
-      <div class="section-title text-center mb-5">
-        <h2>Our Services</h2>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="service-card">
-            <i class="fa-solid fa-scissors"></i>
-            <h4>Custom Design</h4>
-            <p class="text-muted">One-of-a-kind garments designed specifically around your silhouette and personal style preferences.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="service-card">
-            <i class="fa-solid fa-gem"></i>
-            <h4>Bridal & Evening</h4>
-            <p class="text-muted">Exquisite wedding dresses, gala attire, and red-carpet gowns featuring hand-sewn embellishments.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="service-card">
-            <i class="fa-solid fa-user-check"></i>
-            <h4>Style Consultation</h4>
-            <p class="text-muted">Personalized wardrobe curation, color analysis, and styling advice for private and public events.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lookbook Section (Isotope Filterable Gallery) -->
-  <section id="gallery" class="gallery-section">
-    <div class="container">
-      <div class="section-title text-center mb-4">
-        <h2>Outfit Collections</h2>
-      </div>
-
-      <!-- Filters -->
-      <div class="portfolio-filters">
-        <button data-filter="*" class="active">All Styles</button>
-        <button data-filter=".evening">Evening Wear</button>
-        <button data-filter=".bridal">Bridal</button>
-        <button data-filter=".streetwear">Casual Wear</button>
-      </div>
-
-      <!-- Portfolio Grid -->
-       <!-- Item 1: Evening -->
- <div class="row portfolio-container">
-        <div class="col-lg-4 col-md-6 portfolio-item evening">
-          <div class="portfolio-wrap">
-            <img src="images/img12.jpg" alt="Evening Gown">
-            <div class="portfolio-overlay">
-              <h4>Emerald Silk Gown</h4>
-              <p>Evening Collection</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item evening">
-          <div class="portfolio-wrap">
-            <img src="images/img6.jpeg" alt="Evening Gown">
-            <div class="portfolio-overlay">
-              <h4>Emerald Silk Gown</h4>
-              <p>Evening Collection</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item evening">
-          <div class="portfolio-wrap">
-            <img src="images/img15.jpg" alt="Evening Gown">
-            <div class="portfolio-overlay">
-              <h4>Emerald Silk Gown</h4>
-              <p>Evening Collection</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 2: Bridal -->
-         <div class="row portfolio-container">
-        <div class="col-lg-4 col-md-6 portfolio-item bridal">
-          <div class="portfolio-wrap">
-            <img src="images/img2.jpeg" alt="Bridal Dress">
-            <div class="portfolio-overlay">
-              <h4>Royal Lace Bridal Gown</h4>
-              <p>Bridal Couture</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item bridal">
-          <div class="portfolio-wrap">
-            <img src="images/img3.jpeg" alt="Bridal Dress">
-            <div class="portfolio-overlay">
-              <h4>Royal Lace Bridal Gown</h4>
-              <p>Bridal Couture</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item bridal">
-          <div class="portfolio-wrap">
-            <img src="images/img10.jpg" alt="Bridal Dress">
-            <div class="portfolio-overlay">
-              <h4>Royal Lace Bridal Gown</h4>
-              <p>Bridal Couture</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item bridal">
-          <div class="portfolio-wrap">
-            <img src="images/img11.jpg" alt="Bridal Dress">
-            <div class="portfolio-overlay">
-              <h4>Royal Lace Bridal Gown</h4>
-              <p>Bridal Couture</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item bridal">
-          <div class="portfolio-wrap">
-            <img src="images/img13.jpg" alt="Bridal Dress">
-            <div class="portfolio-overlay">
-              <h4>Royal Lace Bridal Gown</h4>
-              <p>Bridal Couture</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item bridal">
-          <div class="portfolio-wrap">
-            <img src="images/img16.jpg" alt="bridal">
-            <div class="portfolio-overlay">
-              <h4>Satin Slip Bridal Dress</h4>
-              <p>Bridal Couture</p>
-            </div>
-          </div>
-        </div>
-
-       <!-- Item 1: streetwear -->
-
-        <div class="col-lg-4 col-md-6 portfolio-item streetwear">
-          <div class="portfolio-wrap">
-            <img src="images/img17.jpg" alt="Casual Wear">
-            <div class="portfolio-overlay">
-              <h4>Oversized Tailored Suit</h4>
-              <p>Casual Wear</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item streetwear">
-          <div class="portfolio-wrap">
-            <img src="images/img18.jpg" alt="Casual Wear">
-            <div class="portfolio-overlay">
-              <h4>Oversized Tailored Suit</h4>
-              <p>Casual Wear</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item streetwear">
-          <div class="portfolio-wrap">
-            <img src="images/img14.jpg" alt="Casual Wear">
-            <div class="portfolio-overlay">
-              <h4>Oversized Tailored Suit</h4>
-              <p>Casual Wear</p>
-            </div>
-          </div>
-        </div>
-  </section>
-
-  <!-- Contact & Booking Section -->
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <div class="section-title text-center mb-5">
-        <h2>Book a Private Fitting</h2>
-        <p class="text-muted mt-3" style="max-width: 600px; margin: 0 auto;">Fill the form below — our atelier team will confirm your appointment within 24 hours.</p>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <form id="fittingForm">
-  <div class="row g-3">
-    <div class="col-md-6">
-      <input type="text" id="custName" class="form-control" placeholder="Your Name" required>
-    </div>
-    <div class="col-md-6">
-      <input type="email" id="custEmail" class="form-control" placeholder="Your Email" required>
-    </div>
-    <div class="col-md-6">
-      <input type="date" id="custDate" class="form-control" required>
-    </div>
-    <div class="col-md-6">
-      <select id="custCategory" class="form-select form-control">
-        <option selected disabled>Select Category</option>
-        <option>Bridal Consultation</option>
-        <option>Bespoke Suit/Gown</option>
-        <option>Wardrobe Styling</option>
-        <option>Evening / Gala Wear</option>
-        <option>Casual Wear</option>
-      </select>
-    </div>
-    <div class="col-12">
-      <textarea id="custMessage" class="form-control" rows="4" placeholder="Tell us about your event or garment requests..."></textarea>
-    </div>
-    <div class="col-12 text-center">
-      <button type="submit" class="btn btn-gold px-5 py-3">Request Appointment</button>
-      <p class="text-muted small mt-3 mb-0"><i class="fa-regular fa-clock me-1"></i> We reply within 24h · Your data is confidential</p>
     </div>
   </div>
-</form>
+</section>
 
-          <!-- quick contact icons within enquiry -->
-          <div class="quick-contact text-center mt-5 d-flex justify-content-center gap-4 flex-wrap">
-            <a href="https://wa.me/233261101887" target="_blank" style="color:#25D366; font-weight:500;">
-              <i class="fab fa-whatsapp me-2"></i>WhatsApp
-            </a>
-            <a href="https://www.tiktok.com/@iziewear" target="_blank" style="color:#000; font-weight:500;">
-              <i class="fab fa-tiktok me-2"></i>TikTok
-            </a>
-            <a href="https://facebook.com/iziewear" target="_blank" style="color:#1877F2; font-weight:500;">
-              <i class="fab fa-facebook me-2"></i>Facebook
-            </a>
-            <a href="#" style="color:#E1306C; font-weight:500;">
-              <i class="fab fa-instagram me-2"></i>Instagram
-            </a>
+<!-- ===== Testimonials carousel ===== -->
+<section id="testimonials" class="testimonials-section">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>Client Stories</h2>
+      <p>Worn with confidence, remembered forever.</p>
+    </div>
+    <div class="testimonial-carousel reveal">
+      <button class="carousel-btn prev" aria-label="Previous review"><i class="fas fa-chevron-left"></i></button>
+      <div class="testimonial-viewport">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-slide">
+            <article class="testimonial-card">
+              <img class="testimonial-avatar" src="images/img6.jpeg" alt="Ama K.">
+              <div class="testimonial-stars">★★★★★</div>
+              <blockquote>“Every detail was considered. My gown felt truly personal, elegant and completely effortless.”</blockquote>
+              <div class="testimonial-author">Ama K. · Bridal Client</div>
+            </article>
+          </div>
+          <div class="testimonial-slide">
+            <article class="testimonial-card">
+              <img class="testimonial-avatar" src="images/img9.jpeg" alt="Nana O.">
+              <div class="testimonial-stars">★★★★★</div>
+              <blockquote>“The tailoring was exceptional. IZIEWEAR transformed my idea into one of the finest outfits I own.”</blockquote>
+              <div class="testimonial-author">Nana O. · Bespoke Client</div>
+            </article>
+          </div>
+          <div class="testimonial-slide">
+            <article class="testimonial-card">
+              <img class="testimonial-avatar" src="images/img15.jpg" alt="Selina M.">
+              <div class="testimonial-stars">★★★★★</div>
+              <blockquote>“Professional, warm and incredibly creative. The entire fitting experience felt luxurious.”</blockquote>
+              <div class="testimonial-author">Selina M. · Evening Wear</div>
+            </article>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn next" aria-label="Next review"><i class="fas fa-chevron-right"></i></button>
+      <div class="carousel-dots" id="testimonialDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section id="services" class="services-section">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>Our Services</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="service-card">
+          <i class="fa-solid fa-scissors"></i>
+          <h4>Custom Design</h4>
+          <p class="text-muted">One-of-a-kind garments designed specifically around your silhouette and personal style preferences.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="service-card">
+          <i class="fa-solid fa-gem"></i>
+          <h4>Bridal & Evening</h4>
+          <p class="text-muted">Exquisite wedding dresses, gala attire, and red-carpet gowns featuring hand-sewn embellishments.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="service-card">
+          <i class="fa-solid fa-user-check"></i>
+          <h4>Ready to Wear</h4>
+          <p class="text-muted">Ready to wear for private and public events.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section id="gallery" class="gallery-section">
+  <div class="container">
+    <div class="section-title text-center mb-4">
+      <h2>Outfit Collections</h2>
+    </div>
+    <div class="portfolio-filters">
+      <button data-filter="*" class="active">All Styles</button>
+      <button data-filter=".evening">Evening Wear</button>
+      <button data-filter=".bridal">Bridal</button>
+      <button data-filter=".streetwear">Casual Wear</button>
+    </div>
+    <div class="row portfolio-container">
+      <div class="col-lg-4 col-md-6 portfolio-item evening reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Emerald Silk Gown">
+          <img src="images/img12.jpg" alt="Emerald Silk Gown">
+          <div class="portfolio-overlay">
+            <h4>Emerald Silk Gown</h4>
+            <p>Evening Collection</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item evening reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Evening Gown">
+          <img src="images/img6.jpeg" alt="Evening Gown">
+          <div class="portfolio-overlay">
+            <h4>Evening Gown</h4>
+            <p>Evening Collection</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item evening reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Emerald Gown">
+          <img src="images/img15.jpg" alt="Emerald Gown">
+          <div class="portfolio-overlay">
+            <h4>Emerald Gown</h4>
+            <p>Evening Collection</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item bridal reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Royal Lace Bridal Gown">
+          <img src="images/img2.jpeg" alt="Royal Lace Bridal Gown">
+          <div class="portfolio-overlay">
+            <h4>Royal Lace Bridal Gown</h4>
+            <p>Bridal Couture</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item bridal reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Bridal Gown">
+          <img src="images/img3.jpeg" alt="Bridal Gown">
+          <div class="portfolio-overlay">
+            <h4>Bridal Gown</h4>
+            <p>Bridal Couture</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item bridal reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Bridal Dress">
+          <img src="images/img10.jpg" alt="Bridal Dress">
+          <div class="portfolio-overlay">
+            <h4>Bridal Dress</h4>
+            <p>Bridal Couture</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item bridal reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Bridal Gown">
+          <img src="images/img11.jpg" alt="Bridal Gown">
+          <div class="portfolio-overlay">
+            <h4>Bridal Gown</h4>
+            <p>Bridal Couture</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item bridal reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Bridal Gown">
+          <img src="images/img13.jpg" alt="Bridal Gown">
+          <div class="portfolio-overlay">
+            <h4>Bridal Gown</h4>
+            <p>Bridal Couture</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item bridal reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Satin Slip Bridal Dress">
+          <img src="images/img16.jpg" alt="Satin Slip Bridal Dress">
+          <div class="portfolio-overlay">
+            <h4>Satin Slip Bridal Dress</h4>
+            <p>Bridal Couture</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item streetwear reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Fitted Outfit">
+          <img src="images/img17.jpg" alt="Fitted Outfit">
+          <div class="portfolio-overlay">
+            <h4>Fitted Outfit</h4>
+            <p>Casual Wear</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item streetwear reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Office Wear">
+          <img src="images/img18.jpg" alt="Office Wear">
+          <div class="portfolio-overlay">
+            <h4>Office Wear</h4>
+            <p>Casual Wear</p>
+            <span class="quick-view-label">View details →</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 portfolio-item streetwear reveal">
+        <div class="portfolio-wrap" tabindex="0" role="button" aria-label="View Office Tailored Suit">
+          <img src="images/img14.jpg" alt="Office Tailored Suit">
+          <div class="portfolio-overlay">
+            <h4>Office Tailored Suit</h4>
+            <p>Casual Wear</p>
+            <span class="quick-view-label">View details →</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <!-- ===== FOOTER LOGO ===== -->
-      <img src="images/logo.png" alt="IZIEWEAR Logo" class="footer-logo">
-      <p class="footer-tagline">Quite Luxury. Bold Heritage.</p>
-      <p class="mb-1 text-white-50">&copy; 2026 IZIEWEAR. All Rights Reserved. · Bespoke fashion house</p>
-      <div class="social-links mt-3">
-        <a href="https://wa.me/233261101887" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.tiktok.com/@iziewear" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://facebook.com/iziewear" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+<!-- ===== Shop the Look ===== -->
+<section id="shop" class="shop-section">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>Shop the Look</h2>
+      <p>Limited ready-to-wear pieces from our latest atelier collection.</p>
+    </div>
+    <div class="row" id="shopGrid">
+      <div class="col-md-4 reveal">
+        <article class="shop-card" data-id="heritage-set" data-name="The Heritage Tailored Set" data-price="4200" data-image="images/img14.jpg">
+          <div class="shop-image">
+            <img src="images/img14.jpg" alt="Heritage tailored set">
+            <button class="wishlist-btn" type="button" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="shop-info">
+            <h4>The Heritage Tailored Set</h4>
+            <p class="shop-price">GHS 4,200</p>
+            <div class="option-label">Size</div>
+            <div class="size-options">
+              <button type="button">S</button>
+              <button type="button">M</button>
+              <button type="button">L</button>
+              <button type="button">XL</button>
+            </div>
+            <div class="option-label">Colour</div>
+            <div class="color-options">
+              <button type="button" style="background:#1a1a1a" data-color="Black" aria-label="Black"></button>
+              <button type="button" style="background:#8b6f47" data-color="Tan" aria-label="Tan"></button>
+              <button type="button" style="background:#c9a03d" data-color="Gold" aria-label="Gold"></button>
+            </div>
+            <button class="add-to-cart" type="button">Add to Bag</button>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4 reveal">
+        <article class="shop-card" data-id="satin-gown" data-name="Satin Evening Gown" data-price="5600" data-image="images/img12.jpg">
+          <div class="shop-image">
+            <img src="images/img12.jpg" alt="Satin evening gown">
+            <button class="wishlist-btn" type="button" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="shop-info">
+            <h4>Satin Evening Gown</h4>
+            <p class="shop-price">GHS 5,600</p>
+            <div class="option-label">Size</div>
+            <div class="size-options">
+              <button type="button">S</button>
+              <button type="button">M</button>
+              <button type="button">L</button>
+              <button type="button">XL</button>
+            </div>
+            <div class="option-label">Colour</div>
+            <div class="color-options">
+              <button type="button" style="background:#0d3b2e" data-color="Emerald" aria-label="Emerald"></button>
+              <button type="button" style="background:#7a1f2b" data-color="Wine" aria-label="Wine"></button>
+              <button type="button" style="background:#1a1a1a" data-color="Black" aria-label="Black"></button>
+            </div>
+            <button class="add-to-cart" type="button">Add to Bag</button>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-4 reveal">
+        <article class="shop-card" data-id="bridal-look" data-name="Modern Bridal Look" data-price="6800" data-image="images/img16.jpg">
+          <div class="shop-image">
+            <img src="images/img16.jpg" alt="Modern bridal look">
+            <button class="wishlist-btn" type="button" aria-label="Add to wishlist"><i class="far fa-heart"></i></button>
+          </div>
+          <div class="shop-info">
+            <h4>Modern Bridal Look</h4>
+            <p class="shop-price">GHS 6,800</p>
+            <div class="option-label">Size</div>
+            <div class="size-options">
+              <button type="button">S</button>
+              <button type="button">M</button>
+              <button type="button">L</button>
+              <button type="button">XL</button>
+            </div>
+            <div class="option-label">Colour</div>
+            <div class="color-options">
+              <button type="button" style="background:#f5f0e6" data-color="Ivory" aria-label="Ivory"></button>
+              <button type="button" style="background:#e8dfd0" data-color="Champagne" aria-label="Champagne"></button>
+              <button type="button" style="background:#d4c5ab" data-color="Nude" aria-label="Nude"></button>
+            </div>
+            <button class="add-to-cart" type="button">Add to Bag</button>
+          </div>
+        </article>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Floating WhatsApp button -->
-  <a href="https://wa.me/233261101887?text=Hello%20IZIEWEAR%2C%20I%20would%20like%20to%20book%20a%20fitting" class="whatsapp-float" target="_blank" rel="noopener" title="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+<!-- ===== Style quiz ===== -->
+<section class="style-quiz-section" id="style-quiz">
+  <div class="container">
+    <p class="hero-subtitle">Personal Styling</p>
+    <h2 class="mb-2">Discover Your Signature Style</h2>
+    <p class="mb-4" style="color:#aaa">Answer 3 quick questions for a personalised recommendation.</p>
 
-  <!-- Back to top -->
-  <a href="#" class="back-to-top" id="backToTop" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+    <div class="quiz-step active" data-step="1">
+      <h4 class="mb-3">1. Which mood speaks to you?</h4>
+      <div class="quiz-options">
+        <button class="quiz-option" type="button" data-value="elegant">Elegant & Refined</button>
+        <button class="quiz-option" type="button" data-value="minimal">Minimal & Modern</button>
+        <button class="quiz-option" type="button" data-value="bold">Bold & Dramatic</button>
+      </div>
+    </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- jQuery (Required for Isotope integration) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Isotope JS -->
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <!-- Custom JS -->
-  <script src="js/main.js"></script>
+    <div class="quiz-step" data-step="2">
+      <h4 class="mb-3">2. Where will you wear it?</h4>
+      <div class="quiz-options">
+        <button class="quiz-option" type="button" data-value="wedding">Wedding</button>
+        <button class="quiz-option" type="button" data-value="gala">Gala / Red Carpet</button>
+        <button class="quiz-option" type="button" data-value="office">Office / Everyday</button>
+      </div>
+    </div>
 
-  <!-- Inline fallback & modern behaviour -->
-  <script>
-    (function() {
-      function initIsotope() {
-        if (typeof jQuery === 'undefined' || typeof jQuery.fn.isotope === 'undefined') {
-          document.querySelectorAll('.portfolio-filters button').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-              e.preventDefault();
-              document.querySelectorAll('.portfolio-filters button').forEach(b => b.classList.remove('active'));
-              this.classList.add('active');
-              const filter = this.getAttribute('data-filter');
-              document.querySelectorAll('.portfolio-item').forEach(item => {
-                if (filter === '*' || item.classList.contains(filter.substring(1))) {
-                  item.style.display = 'block';
-                } else {
-                  item.style.display = 'none';
-                }
-              });
-            });
-          });
-          return;
-        }
+    <div class="quiz-step" data-step="3">
+      <h4 class="mb-3">3. What silhouette feels most you?</h4>
+      <div class="quiz-options">
+        <button class="quiz-option" type="button" data-value="tailored">Tailored & Structured</button>
+        <button class="quiz-option" type="button" data-value="flowing">Flowing & Soft</button>
+        <button class="quiz-option" type="button" data-value="statement">Statement & Sculptural</button>
+      </div>
+    </div>
 
-        var $grid = $('.portfolio-container').isotope({
-          itemSelector: '.portfolio-item',
-          layoutMode: 'fitRows',
-          percentPosition: true
-        });
+    <div class="quiz-result" id="quizResult" style="display:none;">
+      <h4 id="quizResultTitle">Your Style Profile</h4>
+      <p id="quizResultText" class="mb-3"></p>
+      <a href="#contact" class="btn btn-gold">Book a Consultation</a>
+    </div>
+  </div>
+</section>
 
-        $('.portfolio-filters').on('click', 'button', function() {
-          var filterValue = $(this).attr('data-filter');
-          $grid.isotope({ filter: filterValue });
-          $('.portfolio-filters button').removeClass('active');
-          $(this).addClass('active');
+<!-- ===== Before/after ===== -->
+<section class="before-after-section" id="transformations">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>From Vision to Reality</h2>
+      <p>Follow the craftsmanship behind every private fitting.</p>
+    </div>
+    <div class="comparison-card reveal">
+      <div class="comparison-side">
+        <img src="images/img2.jpeg" alt="Bridal fitting inspiration">
+        <span class="label">Inspiration</span>
+      </div>
+      <div class="comparison-side">
+        <img src="images/img10.jpg" alt="Completed bridal creation">
+        <span class="label">Final Creation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Editorial lookbook ===== -->
+<section class="lookbook-editorial" id="lookbook">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>The IZIEWEAR Editorial</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6 reveal">
+        <article class="story-card">
+          <div class="story-image"><img src="images/img17.jpg" alt="Quiet luxury editorial"></div>
+          <div class="story-overlay">
+            <p>Campaign 01</p>
+            <h3>Quiet Luxury</h3>
+          </div>
+        </article>
+      </div>
+      <div class="col-md-6 reveal">
+        <article class="story-card">
+          <div class="story-image"><img src="images/img3.jpeg" alt="Modern bridal editorial"></div>
+          <div class="story-overlay">
+            <p>Campaign 02</p>
+            <h3>Bold Heritage</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Social feed ===== -->
+<section class="social-section" id="social">
+  <div class="container">
+    <div class="section-title text-center mb-4">
+      <h2>@IZIEWEAR</h2>
+      <p>Follow the latest atelier moments.</p>
+    </div>
+    <div class="social-grid reveal">
+      <a href="https://www.tiktok.com/@iziewear" target="_blank" rel="noopener" aria-label="View post"><img src="images/img4.jpeg" alt="Social look 1"></a>
+      <a href="https://www.tiktok.com/@iziewear" target="_blank" rel="noopener" aria-label="View post"><img src="images/img6.jpeg" alt="Social look 2"></a>
+      <a href="https://www.tiktok.com/@iziewear" target="_blank" rel="noopener" aria-label="View post"><img src="images/img9.jpeg" alt="Social look 3"></a>
+      <a href="https://www.tiktok.com/@iziewear" target="_blank" rel="noopener" aria-label="View post"><img src="images/img11.jpg" alt="Social look 4"></a>
+      <a href="https://www.tiktok.com/@iziewear" target="_blank" rel="noopener" aria-label="View post"><img src="images/img18.jpg" alt="Social look 5"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Booking ===== -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>Book a Private Fitting</h2>
+      <p class="text-muted mt-3" style="max-width: 600px; margin: 0 auto;">
+        Fill the form below — our atelier team will confirm your appointment within 24 hours.
+      </p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <form id="fittingForm">
+          <input type="text" name="_gotcha" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input type="text" id="custName" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-6">
+              <input type="email" id="custEmail" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="col-md-6">
+              <input type="date" id="custDate" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted small mb-1">Preferred Time</label>
+              <div class="slot-grid" id="appointmentSlots">
+                <button type="button" class="slot-button" data-time="09:00 AM">09:00 AM</button>
+                <button type="button" class="slot-button" data-time="12:00 PM">12:00 PM</button>
+                <button type="button" class="slot-button" data-time="03:00 PM">03:00 PM</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <select id="custCategory" class="form-select form-control" required>
+                <option value="" selected disabled>Select Category</option>
+                <option>Bridal Consultation</option>
+                <option>Bespoke Suit/Gown</option>
+                <option>Wardrobe Styling</option>
+                <option>Evening / Gala Wear</option>
+                <option>Casual Wear</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <textarea id="custMessage" class="form-control" rows="4" placeholder="Tell us about your event or garment requests..."></textarea>
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-gold px-5 py-3">Request Appointment</button>
+              <p class="text-muted small mt-3 mb-0">
+                <i class="fa-regular fa-clock me-1"></i> We reply within 24h · Your data is confidential
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <div id="successScreen" class="success-screen" style="display:none;">
+          <div class="success-icon"><i class="fas fa-check"></i></div>
+          <h3>Request Received</h3>
+          <p class="success-lead">Thank you, <strong id="successName">friend</strong>. Your fitting request has been received.</p>
+          <p class="success-note">
+            Our atelier team will contact you at <strong id="successEmail">your email</strong>
+            within <strong>24 hours</strong> to confirm your appointment.
+          </p>
+          <div class="success-details">
+            <div class="success-detail-row"><span>Preferred Date</span><strong id="successDate">—</strong></div>
+            <div class="success-detail-row"><span>Preferred Time</span><strong id="successTime">—</strong></div>
+            <div class="success-detail-row"><span>Category</span><strong id="successCategory">—</strong></div>
+            <div class="success-detail-row"><span>Request ID</span><strong>#<span id="successId">—</span></strong></div>
+          </div>
+          <div class="success-actions">
+            <button type="button" class="btn btn-gold px-4 py-3" onclick="resetToForm()">
+              <i class="fas fa-plus me-2"></i>Book Another Fitting
+            </button>
+            <a href="https://wa.me/233261101887?text=Hello%20IZIEWEAR%2C%20I%20just%20submitted%20a%20fitting%20request"
+               target="_blank" rel="noopener"
+               class="btn btn-outline-gold px-4 py-3">
+              <i class="fab fa-whatsapp me-2"></i>Chat on WhatsApp
+            </a>
+          </div>
+          <p class="success-footnote"><i class="fas fa-lock me-1"></i> Your information is confidential and never shared.</p>
+        </div>
+
+        <div class="quick-contact text-center mt-5 d-flex justify-content-center gap-4 flex-wrap">
+          <a href="https://wa.me/233261101887" target="_blank" style="color:#25D366; font-weight:500;">
+            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+          </a>
+          <a href="https://www.tiktok.com/@iziewear" target="_blank" style="color:#000; font-weight:500;">
+            <i class="fab fa-tiktok me-2"></i>TikTok
+          </a>
+          <a href="https://facebook.com/iziewear" target="_blank" style="color:#1877F2; font-weight:500;">
+            <i class="fab fa-facebook me-2"></i>Facebook
+          </a>
+          <a href="#" style="color:#E1306C; font-weight:500;">
+            <i class="fab fa-instagram me-2"></i>Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <img src="images/logo.png" alt="IZIEWEAR Logo" class="footer-logo">
+    <p class="footer-tagline">Quiet Luxury. Bold Heritage.</p>
+    <p class="mb-1 text-white-50">&copy; 2026 IZIEWEAR. All Rights Reserved.</p>
+    <div class="social-links mt-3">
+      <a href="https://wa.me/233261101887" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.tiktok.com/@iziewear" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://facebook.com/iziewear" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/233261101887?text=Hello%20IZIEWEAR%2C%20I%20would%20like%20to%20book%20a%20fitting" class="whatsapp-float" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<a href="#" class="back-to-top" id="backToTop" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Garment details">
+  <button class="lightbox-close" id="closeLightbox" type="button" aria-label="Close"><i class="fas fa-xmark"></i></button>
+  <div class="lightbox-image"><img id="lightboxImage" src="" alt=""></div>
+  <div class="lightbox-details">
+    <p class="text-uppercase text-muted" id="lightboxCategory" style="letter-spacing:2px; font-size:0.75rem;">IZIEWEAR Collection</p>
+    <h2 id="lightboxTitle">Signature Piece</h2>
+    <p class="lightbox-price" id="lightboxPrice">Made to order</p>
+    <p id="lightboxDescription">A bespoke design crafted with considered detailing and a refined silhouette.</p>
+    <p class="option-label mt-3">Available Sizes</p>
+    <div class="size-options">
+      <button type="button">S</button>
+      <button type="button">M</button>
+      <button type="button">L</button>
+      <button type="button">XL</button>
+    </div>
+    <button class="btn btn-gold w-100 mt-3" id="lightboxBooking" type="button">
+      <i class="fas fa-calendar me-2"></i>Book for Fitting
+    </button>
+  </div>
+</div>
+
+<!-- ===== Search overlay ===== -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-box">
+    <input id="siteSearch" type="search" placeholder="Search collections..." autocomplete="off" aria-label="Search collections">
+    <button class="search-close" id="closeSearch" type="button" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    <div class="search-results" id="searchResults">Try "bridal", "evening" or "tailored".</div>
+  </div>
+</div>
+
+<!-- ===== Drawer ===== -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="side-drawer" id="sideDrawer" aria-label="Wishlist and bag">
+  <div class="drawer-header">
+    <h3 id="drawerTitle" class="mb-0">Your Wishlist</h3>
+    <button class="nav-icon text-dark" id="closeDrawer" type="button" aria-label="Close"><i class="fas fa-xmark"></i></button>
+  </div>
+  <div id="drawerItems"></div>
+</aside>
+
+<!-- ===== Scripts ===== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+/* ============================================================
+   1. HERO SLIDER
+   ============================================================ */
+(function () {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots .dot');
+  let current = 0, interval;
+  function goTo(i) {
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    current = i;
+  }
+  function start() { clearInterval(interval); interval = setInterval(() => goTo((current + 1) % slides.length), 5000); }
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.slide); start(); }));
+  const hero = document.querySelector('.hero-section');
+  if (hero) {
+    hero.addEventListener('mouseenter', () => clearInterval(interval));
+    hero.addEventListener('mouseleave', start);
+  }
+  if (slides.length) { goTo(0); start(); }
+})();
+
+/* ============================================================
+   2. ISOTOPE FILTERS
+   ============================================================ */
+(function () {
+  const grid = document.querySelector('.portfolio-container');
+  if (!grid) return;
+  let iso = null;
+  function tryIso() {
+    if (typeof Isotope === 'undefined') return;
+    iso = new Isotope(grid, { itemSelector: '.portfolio-item', layoutMode: 'fitRows' });
+  }
+  if (typeof Isotope !== 'undefined') tryIso();
+  else window.addEventListener('load', tryIso);
+
+  document.querySelectorAll('.portfolio-filters button').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.portfolio-filters button').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      if (iso) iso.arrange({ filter });
+      else {
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          item.style.display = (filter === '*' || item.classList.contains(filter.slice(1))) ? '' : 'none';
         });
       }
+    });
+  });
+})();
 
-      window.addEventListener('load', function() {
-        initIsotope();
+/* ============================================================
+   3. SCROLL REVEAL
+   ============================================================ */
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
 
-        const backBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', function() {
-          if (window.scrollY > 400) {
-            backBtn.classList.add('show');
-          } else {
-            backBtn.classList.remove('show');
-          }
-        });
-        backBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+/* ============================================================
+   4. BACK TO TOP + NAV ACTIVE
+   ============================================================ */
+(function () {
+  const btn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (btn) btn.classList.toggle('show', window.scrollY > 400);
+  });
+  if (btn) btn.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        window.addEventListener('scroll', function() {
-          let current = '';
-          sections.forEach(section => {
-            const sectionTop = section.offsetTop - 120;
-            if (window.scrollY >= sectionTop) {
-              current = section.getAttribute('id');
-            }
-          });
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-              link.classList.add('active');
-            }
-          });
-        });
-          
-      });
-    })();
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 140) current = s.id;
+    });
+    links.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+})();
 
-  // ===== Hero Slider =====
-  (function() {
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.hero-dots .dot');
-    let current = 0;
-    let interval;
-    const SLIDE_DURATION = 3300; // 3.3 seconds per slide
+/* ============================================================
+   5. TOAST helper
+   ============================================================ */
+function showToast(message, type) {
+  type = type || 'success';
+  const existing = document.querySelector('.izie-toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'izie-toast izie-toast--' + type;
+  toast.innerHTML = '<i class="fas ' +
+    (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle') +
+    '"></i><span>' + message + '</span>';
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 4500);
+}
 
-    function goToSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-      current = index;
-    }
+/* ============================================================
+   6. LIGHTBOX
+   ============================================================ */
+(function () {
+  const lightbox = document.getElementById('lightbox');
+  const closeBtn = document.getElementById('closeLightbox');
+  const bookBtn = document.getElementById('lightboxBooking');
+  if (!lightbox) return;
 
-    function nextSlide() {
-      const next = (current + 1) % slides.length;
-      goToSlide(next);
-    }
+  const PRODUCT_INFO = {
+    'Emerald Silk Gown': { price: 'GHS 5,600', desc: 'A floor-length silk gown with hand-finished seams and a sculptural neckline.' },
+    'Evening Gown': { price: 'GHS 5,200', desc: 'Evening silhouette with subtle draping and refined detail.' },
+    'Emerald Gown': { price: 'GHS 5,400', desc: 'Deep emerald tones, flowing lines, made for the spotlight.' },
+    'Royal Lace Bridal Gown': { price: 'GHS 8,900', desc: 'Hand-stitched lace bridal gown with a fitted bodice and full skirt.' },
+    'Bridal Gown': { price: 'GHS 7,400', desc: 'Classic bridal silhouette with modern finishing.' },
+    'Bridal Dress': { price: 'GHS 7,800', desc: 'Refined bridal gown with delicate detailing.' },
+    'Satin Slip Bridal Dress': { price: 'GHS 6,800', desc: 'Minimal satin slip bridal dress for the modern bride.' },
+    'Fitted Outfit': { price: 'GHS 3,200', desc: 'Tailored casual wear designed for comfort and elegance.' },
+    'Office Wear': { price: 'GHS 2,900', desc: 'Sophisticated office attire with bespoke tailoring.' },
+    'Office Tailored Suit': { price: 'GHS 4,200', desc: 'Sharp tailored suit perfect for professional settings.' }
+  };
 
-    function startAutoPlay() {
-      clearInterval(interval);
-      interval = setInterval(nextSlide, SLIDE_DURATION);
-    }
+  function openLightbox(wrap) {
+    const img = wrap.querySelector('img');
+    const title = wrap.querySelector('h4')?.textContent || 'Signature Piece';
+    const category = wrap.querySelector('.portfolio-overlay p')?.textContent || 'IZIEWEAR Collection';
+    const info = PRODUCT_INFO[title] || { price: 'Made to order', desc: 'A bespoke design crafted with considered detailing.' };
+    document.getElementById('lightboxImage').src = img.src;
+    document.getElementById('lightboxImage').alt = img.alt;
+    document.getElementById('lightboxTitle').textContent = title;
+    document.getElementById('lightboxCategory').textContent = category;
+    document.getElementById('lightboxPrice').textContent = info.price;
+    document.getElementById('lightboxDescription').textContent = info.desc;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-    // Dot click handlers
-    dots.forEach(dot => {
-      dot.addEventListener('click', function() {
-        const index = parseInt(this.getAttribute('data-slide'), 10);
-        goToSlide(index);
-        startAutoPlay(); // reset timer
+  document.querySelectorAll('.portfolio-wrap').forEach(wrap => {
+    wrap.addEventListener('click', () => openLightbox(wrap));
+    wrap.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(wrap); } });
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  if (bookBtn) bookBtn.addEventListener('click', () => {
+    closeLightbox();
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+
+/* ============================================================
+   7. TESTIMONIAL CAROUSEL
+   ============================================================ */
+(function () {
+  const track = document.getElementById('testimonialTrack');
+  const dotsWrap = document.getElementById('testimonialDots');
+  if (!track) return;
+  const slides = track.children;
+  const total = slides.length;
+  let idx = 0, auto;
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Review ' + (i + 1));
+    d.addEventListener('click', () => go(i, true));
+    dotsWrap.appendChild(d);
+  }
+  const dots = dotsWrap.children;
+
+  function go(i, reset) {
+    idx = (i + total) % total;
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    [...dots].forEach((d, k) => d.classList.toggle('active', k === idx));
+    if (reset) restart();
+  }
+  function restart() {
+    clearInterval(auto);
+    auto = setInterval(() => go(idx + 1), 6000);
+  }
+  document.querySelector('.carousel-btn.prev')?.addEventListener('click', () => go(idx - 1, true));
+  document.querySelector('.carousel-btn.next')?.addEventListener('click', () => go(idx + 1, true));
+  go(0); restart();
+})();
+
+/* ============================================================
+   8. SHOP — size, colour, wishlist, cart
+   ============================================================ */
+(function () {
+  const wishlist = new Set(JSON.parse(localStorage.getItem('izie-wishlist') || '[]'));
+  const cart = new Set(JSON.parse(localStorage.getItem('izie-cart') || '[]'));
+
+  function save() {
+    localStorage.setItem('izie-wishlist', JSON.stringify([...wishlist]));
+    localStorage.setItem('izie-cart', JSON.stringify([...cart]));
+    document.getElementById('wishlistCount').textContent = wishlist.size;
+    document.getElementById('cartCount').textContent = cart.size;
+  }
+
+  document.querySelectorAll('.shop-card').forEach(card => {
+    const id = card.dataset.id;
+
+    // Wishlist
+    const wishBtn = card.querySelector('.wishlist-btn');
+    if (wishlist.has(id)) { wishBtn.classList.add('active'); wishBtn.innerHTML = '<i class="fas fa-heart"></i>'; }
+    wishBtn.addEventListener('click', () => {
+      if (wishlist.has(id)) {
+        wishlist.delete(id);
+        wishBtn.classList.remove('active');
+        wishBtn.innerHTML = '<i class="far fa-heart"></i>';
+      } else {
+        wishlist.add(id);
+        wishBtn.classList.add('active');
+        wishBtn.innerHTML = '<i class="fas fa-heart"></i>';
+      }
+      save();
+    });
+
+    // Size
+    card.querySelectorAll('.size-options button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        card.querySelectorAll('.size-options button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
       });
     });
 
-    // Pause on hover (desktop)
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-      heroSection.addEventListener('mouseenter', () => clearInterval(interval));
-      heroSection.addEventListener('mouseleave', startAutoPlay);
-    }
-
-    // Start
-    if (slides.length > 0) {
-      goToSlide(0);
-      startAutoPlay();
-    }
-  })();
-
-  (function () {
-    var WHATSAPP_NUMBER = '233261101887';
-    var BUSINESS_NAME   = 'IZIEWEAR';
-
-    var form = document.getElementById('fittingForm');
-    if (!form) return;
-
-    function showToast(message, type) {
-      type = type || 'success';
-      var existing = document.querySelector('.izie-toast');
-      if (existing) existing.remove();
-
-      var toast = document.createElement('div');
-      toast.className = 'izie-toast izie-toast--' + type;
-      toast.innerHTML = '<i class="fas ' +
-        (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle') +
-        '"></i><span>' + message + '</span>';
-      document.body.appendChild(toast);
-
-      requestAnimationFrame(function () {
-        toast.classList.add('show');
+    // Colour
+    card.querySelectorAll('.color-options button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        card.querySelectorAll('.color-options button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
       });
-      setTimeout(function () {
-        toast.classList.remove('show');
-        setTimeout(function () { toast.remove(); }, 400);
-      }, 4500);
-    }
-
-    function buildMessage(data) {
-      var lines = [
-        '*New Fitting Request - ' + BUSINESS_NAME + '*',
-        '',
-        'Name: ' + data.name,
-        'Email: ' + data.email,
-        'Preferred Date: ' + data.date,
-        'Category: ' + data.category,
-        'Message: ' + (data.message || '-'),
-        '',
-        'Sent from IZIEWEAR website'
-      ];
-      return lines.join('\n');
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      var data = {
-        name:     document.getElementById('custName').value.trim(),
-        email:    document.getElementById('custEmail').value.trim(),
-        date:     document.getElementById('custDate').value,
-        category: document.getElementById('custCategory').value,
-        message:  document.getElementById('custMessage').value.trim()
-      };
-
-      // Build URL without template literals — safest approach
-      var message = buildMessage(data);
-      var encoded = encodeURIComponent(message);
-      var waURL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encoded;
-
-      console.log('WhatsApp URL:', waURL); // ← check console to debug
-
-      var waWindow = window.open(waURL, '_blank');
-      if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
-        window.location.href = waURL;
-      }
-
-      showToast('Opening WhatsApp...', 'success');
-      form.reset();
     });
-  })();
 
-  </script>
+    // Cart
+    card.querySelector('.add-to-cart').addEventListener('click', () => {
+      cart.add(id);
+      save();
+      showToast('Added to bag', 'success');
+    });
+  });
+
+  save();
+  window.__izieSaveState = save;
+  window.__izieWishlist = wishlist;
+  window.__izieCart = cart;
+})();
+
+/* ============================================================
+   9. DRAWER (wishlist/cart)
+   ============================================================ */
+(function () {
+  const drawer = document.getElementById('sideDrawer');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const titleEl = document.getElementById('drawerTitle');
+  const itemsEl = document.getElementById('drawerItems');
+  if (!drawer) return;
+
+  function close() { drawer.classList.remove('open'); backdrop.classList.remove('show'); }
+  function open(type) {
+    const isWish = type === 'wishlist';
+    titleEl.textContent = isWish ? 'Your Wishlist' : 'Your Bag';
+    const set = isWish ? window.__izieWishlist : window.__izieCart;
+    itemsEl.innerHTML = set.size
+      ? [...set].map(id => {
+          const card = document.querySelector(`.shop-card[data-id="${id}"]`);
+          if (!card) return '';
+          const name = card.dataset.name;
+          const price = parseInt(card.dataset.price).toLocaleString();
+          const img = card.dataset.image;
+          return `
+            <div class="drawer-item">
+              <img src="${img}" alt="${name}">
+              <div><strong>${name}</strong><br><small class="text-muted">GHS ${price}</small></div>
+              <button type="button" class="nav-icon text-dark drawer-remove" data-id="${id}" data-type="${type}" aria-label="Remove">
+                <i class="fas fa-xmark"></i>
+              </button>
+            </div>`;
+        }).join('')
+      : `<p class="text-muted text-center py-5">${isWish ? 'Your wishlist is empty.' : 'Your bag is empty.'}</p>`;
+    drawer.classList.add('open');
+    backdrop.classList.add('show');
+  }
+
+  document.getElementById('openWishlist')?.addEventListener('click', () => open('wishlist'));
+  document.getElementById('openCart')?.addEventListener('click', () => open('cart'));
+  document.getElementById('closeDrawer')?.addEventListener('click', close);
+  backdrop?.addEventListener('click', close);
+
+  itemsEl.addEventListener('click', e => {
+    const btn = e.target.closest('.drawer-remove');
+    if (!btn) return;
+    const set = btn.dataset.type === 'wishlist' ? window.__izieWishlist : window.__izieCart;
+    set.delete(btn.dataset.id);
+    window.__izieSaveState();
+    if (btn.dataset.type === 'wishlist') {
+      const card = document.querySelector(`.shop-card[data-id="${btn.dataset.id}"]`);
+      if (card) {
+        const wb = card.querySelector('.wishlist-btn');
+        wb.classList.remove('active');
+        wb.innerHTML = '<i class="far fa-heart"></i>';
+      }
+    }
+    open(btn.dataset.type);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') close();
+  });
+})();
+
+/* ============================================================
+   10. SEARCH
+   ============================================================ */
+(function () {
+  const overlay = document.getElementById('searchOverlay');
+  const input = document.getElementById('siteSearch');
+  const results = document.getElementById('searchResults');
+  if (!overlay) return;
+
+  document.getElementById('openSearch')?.addEventListener('click', () => {
+    overlay.classList.add('open');
+    setTimeout(() => input.focus(), 100);
+  });
+  document.getElementById('closeSearch')?.addEventListener('click', () => overlay.classList.remove('open'));
+
+  input?.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) { results.innerHTML = 'Try "bridal", "evening" or "tailored".'; return; }
+    const matches = [
+      ...document.querySelectorAll('.portfolio-item h4'),
+      ...document.querySelectorAll('.shop-card h4'),
+      ...document.querySelectorAll('.story-card h3')
+    ].map(el => el.textContent).filter(t => t.toLowerCase().includes(q));
+    results.innerHTML = matches.length
+      ? matches.slice(0, 6).map(t => `<a href="#gallery" data-close>${t}</a>`).join('')
+      : 'No matching piece found.';
+  });
+
+  results.addEventListener('click', e => {
+    if (e.target.tagName === 'A') overlay.classList.remove('open');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') overlay.classList.remove('open');
+  });
+})();
+
+/* ============================================================
+   11. STYLE QUIZ
+   ============================================================ */
+(function () {
+  const steps = document.querySelectorAll('.quiz-step');
+  const result = document.getElementById('quizResult');
+  const resultTitle = document.getElementById('quizResultTitle');
+  const resultText = document.getElementById('quizResultText');
+  const answers = {};
+  let stepIdx = 0;
+
+  function showStep(i) {
+    steps.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    stepIdx = i;
+  }
+
+  steps.forEach((step, i) => {
+    step.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        step.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const key = 'q' + (i + 1);
+        answers[key] = btn.dataset.value;
+        setTimeout(() => {
+          if (i < steps.length - 1) showStep(i + 1);
+          else finish();
+        }, 300);
+      });
+    });
+  });
+
+  function finish() {
+    steps.forEach(s => s.classList.remove('active'));
+    const a = answers.q1, b = answers.q2, c = answers.q3;
+    let title = 'The Refined Minimalist';
+    let text = 'You gravitate toward clean lines, quiet luxury, and pieces that feel timeless. We recommend our tailored separates and structured evening wear.';
+    if (a === 'elegant' || b === 'gala') {
+      title = 'The Evening Icon';
+      text = 'You live for the moment the room turns. Expect statement gowns, sculptural silhouettes, and rich fabrics.';
+    } else if (a === 'bold' || c === 'statement') {
+      title = 'The Bold Original';
+      text = 'You use fashion as a statement. Dramatic lines, deep colours, and custom couture are your signature.';
+    } else if (b === 'wedding') {
+      title = 'The Modern Bride';
+      text = 'You want bridal that feels personal and refined. Our lace and satin bridal couture is a perfect match.';
+    }
+    resultTitle.textContent = title;
+    resultText.textContent = text;
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+})();
+
+/* ============================================================
+   12. BOOKING FORM (backend integration)
+   ============================================================ */
+(function () {
+  const API_URL = 'http://localhost:3000/api/fitting-request';
+  const form = document.getElementById('fittingForm');
+  const successScreen = document.getElementById('successScreen');
+  if (!form || !successScreen) return;
+
+  // Date minimum
+  const dateInput = document.getElementById('custDate');
+  if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+  // Slot picker
+  document.querySelectorAll('.slot-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.slot-button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  function showSuccess(data, requestId) {
+    document.getElementById('successName').textContent = (data.name || 'friend').split(' ')[0];
+    document.getElementById('successEmail').textContent = data.email || 'your email';
+    document.getElementById('successDate').textContent = data.date
+      ? new Date(data.date + 'T00:00:00').toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+      : '—';
+    document.getElementById('successTime').textContent = data.time || '—';
+    document.getElementById('successCategory').textContent = data.category || '—';
+    document.getElementById('successId').textContent = requestId || '—';
+    form.style.display = 'none';
+    successScreen.style.display = 'block';
+    successScreen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  window.resetToForm = function () {
+    successScreen.style.display = 'none';
+    form.style.display = '';
+    form.reset();
+    document.querySelectorAll('.slot-button').forEach(b => b.classList.remove('active'));
+    if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+
+    const data = {
+      name:     document.getElementById('custName').value.trim(),
+      email:    document.getElementById('custEmail').value.trim(),
+      date:     document.getElementById('custDate').value,
+      time:     document.querySelector('.slot-button.active')?.dataset.time || '',
+      category: document.getElementById('custCategory').value,
+      message:  document.getElementById('custMessage').value.trim(),
+      _gotcha:  form.querySelector('[name="_gotcha"]')?.value || ''
+    };
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        const msg = result.errors?.[0]?.msg || result.message || 'Submission failed';
+        throw new Error(msg);
+      }
+      showSuccess(data, result.id);
+      showToast('Request received!', 'success');
+    } catch (err) {
+      console.error(err);
+      showToast(err.message || 'Network error. Please try again.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalHTML;
+    }
+  });
+})();
+
+/* ============================================================
+   13. Accessibility — Esc closes everything
+   ============================================================ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.overlay-open').forEach(el => el.classList.remove('overlay-open'));
+    document.body.style.overflow = '';
+  }
+});
+</script>
 </body>
 </html>
